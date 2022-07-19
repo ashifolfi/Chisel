@@ -33,6 +33,7 @@ globals="*res://scenes/globals.tscn"
 
 window/size/width=1366
 window/size/height=768
+window/size/fullscreen=true
 
 [editor_plugins]
 
