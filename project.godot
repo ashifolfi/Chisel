@@ -1,0 +1,48 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Node",
+"class": "VMF",
+"language": "GDScript",
+"path": "res://addons/vmflib/VMF.gd"
+} ]
+_global_script_class_icons={
+"VMF": ""
+}
+
+[application]
+
+config/name="Chisel"
+boot_splash/image="res://icon.png"
+boot_splash/fullsize=false
+config/icon="res://icon.png"
+
+[autoload]
+
+globals="*res://scenes/globals.tscn"
+
+[display]
+
+window/size/width=1366
+window/size/height=768
+window/size/fullscreen=true
+
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/MeshBuilder/plugin.cfg", "res://addons/vmflib/plugin.cfg" )
+
+[physics]
+
+common/enable_pause_aware_picking=true
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"
