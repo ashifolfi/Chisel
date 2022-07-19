@@ -19,9 +19,9 @@ func _on_Create_pressed():
 	
 	# And now we define the vertices for the cube
 	# This is where we use width, length, and height.
-	var hfinal = int($Size/H/LineEdit.get_text())
-	var lfinal = int($Size/L/LineEdit.get_text())
-	var wfinal = int($Size/W/LineEdit.get_text())
+	var hfinal = float($Size/H/LineEdit.get_text())
+	var lfinal = float($Size/L/LineEdit.get_text())
+	var wfinal = float($Size/W/LineEdit.get_text())
 	
 	var varray = PoolVector3Array()
 	varray.append(Vector3(0, 0, lfinal))
