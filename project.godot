@@ -34,11 +34,19 @@ globals="*res://scripts/globals.gd"
 
 window/size/width=1366
 window/size/height=768
-window/size/fullscreen=true
+window/size/test_width=1280
+window/size/test_height=720
+window/stretch/mode="viewport"
+window/stretch/aspect="keep"
 
 [editor_plugins]
 
 enabled=PoolStringArray( "res://addons/MeshBuilder/plugin.cfg", "res://addons/vmflib/plugin.cfg" )
+
+[locale]
+
+translations=PoolStringArray(  )
+locale_filter=[ 0, [  ] ]
 
 [physics]
 

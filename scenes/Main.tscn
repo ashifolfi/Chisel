@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://addons/MeshBuilder/MeshBuilder.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://scripts/UI/menubar/App.gd" type="Script" id=6]
 [ext_resource path="res://scripts/camera.gd" type="Script" id=7]
 [ext_resource path="res://assets/ui/mb-bg.png" type="Texture" id=8]
+[ext_resource path="res://scripts/UI/menubar/View.gd" type="Script" id=9]
 
 [sub_resource type="StyleBoxFlat" id=2]
 draw_center = false
@@ -132,7 +133,9 @@ focus_mode = 2
 theme = SubResource( 1 )
 text = "View"
 flat = false
+items = [ "Enable 2D Views (Experimental)", null, 0, false, false, 0, 0, null, "", false ]
 switch_on_hover = true
+script = ExtResource( 9 )
 
 [node name="Tools" type="MenuButton" parent="Main/Panel/MenuBar"]
 margin_left = 290.0
@@ -185,14 +188,14 @@ script = ExtResource( 3 )
 margin_right = 87.0
 margin_bottom = 71.0
 rect_min_size = Vector2( 87, 71 )
-text = "Cube"
+text = "Primitive"
 clip_text = true
 
 [node name="3DView" type="Panel" parent="Main/ToolsView"]
 margin_left = 110.0
 margin_top = 7.0
-margin_right = 1366.0
-margin_bottom = 726.0
+margin_right = 1359.0
+margin_bottom = 716.0
 rect_pivot_offset = Vector2( -628, 502 )
 script = ExtResource( 4 )
 
@@ -202,28 +205,128 @@ anchor_bottom = 1.0
 stretch = true
 
 [node name="Viewport" type="Viewport" parent="Main/ToolsView/3DView/ViewportContainer"]
-size = Vector2( 1256, 719 )
+size = Vector2( 1249, 709 )
 handle_input_locally = false
 render_target_update_mode = 3
 
 [node name="Camera" type="Camera" parent="Main/ToolsView/3DView/ViewportContainer/Viewport"]
 script = ExtResource( 7 )
 
+[node name="Label" type="Label" parent="Main/ToolsView/3DView"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 88.0
+margin_bottom = 30.0
+text = "3D Textured"
+
+[node name="2DTop" type="Panel" parent="Main/ToolsView"]
+visible = false
+margin_left = 739.0
+margin_top = 7.0
+margin_right = 1363.0
+margin_bottom = 366.0
+rect_pivot_offset = Vector2( -628, 502 )
+
+[node name="ViewportContainer" type="ViewportContainer" parent="Main/ToolsView/2DTop"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+stretch = true
+
+[node name="Viewport" type="Viewport" parent="Main/ToolsView/2DTop/ViewportContainer"]
+size = Vector2( 624, 359 )
+handle_input_locally = false
+render_target_update_mode = 0
+
+[node name="Camera" type="Camera" parent="Main/ToolsView/2DTop/ViewportContainer/Viewport"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 10, 0 )
+projection = 1
+size = 14.7319
+
+[node name="Label" type="Label" parent="Main/ToolsView/2DTop"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 88.0
+margin_bottom = 30.0
+text = "2D Top"
+
+[node name="2DFront" type="Panel" parent="Main/ToolsView"]
+visible = false
+margin_left = 739.0
+margin_top = 358.0
+margin_right = 1363.0
+margin_bottom = 717.0
+rect_pivot_offset = Vector2( -628, 502 )
+
+[node name="ViewportContainer" type="ViewportContainer" parent="Main/ToolsView/2DFront"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+stretch = true
+
+[node name="Viewport" type="Viewport" parent="Main/ToolsView/2DFront/ViewportContainer"]
+size = Vector2( 624, 359 )
+handle_input_locally = false
+render_target_update_mode = 0
+
+[node name="Camera" type="Camera" parent="Main/ToolsView/2DFront/ViewportContainer/Viewport"]
+transform = Transform( 1, 0, 0, 0, -1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, -8.72432 )
+projection = 1
+size = 14.7319
+
+[node name="Label" type="Label" parent="Main/ToolsView/2DFront"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 88.0
+margin_bottom = 30.0
+text = "2D Front"
+
+[node name="2DSide" type="Panel" parent="Main/ToolsView"]
+visible = false
+margin_left = 112.0
+margin_top = 358.0
+margin_right = 736.0
+margin_bottom = 717.0
+rect_pivot_offset = Vector2( -628, 502 )
+
+[node name="ViewportContainer" type="ViewportContainer" parent="Main/ToolsView/2DSide"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+stretch = true
+
+[node name="Viewport" type="Viewport" parent="Main/ToolsView/2DSide/ViewportContainer"]
+size = Vector2( 624, 359 )
+handle_input_locally = false
+render_target_update_mode = 0
+
+[node name="Camera" type="Camera" parent="Main/ToolsView/2DSide/ViewportContainer/Viewport"]
+transform = Transform( -4.37114e-08, -8.74228e-08, 1, 0, -1, -8.74228e-08, 1, -3.82137e-15, 4.37114e-08, 9.81711, 0, 0 )
+projection = 1
+size = 14.7319
+
+[node name="Label" type="Label" parent="Main/ToolsView/2DSide"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 88.0
+margin_bottom = 30.0
+text = "2D Side"
+
 [node name="CubeCreate" type="WindowDialog" parent="."]
-visible = true
 margin_left = 49.0
 margin_top = 253.0
 margin_right = 276.0
 margin_bottom = 569.0
-window_title = "Create Cube"
+window_title = "Primitive Creation"
 script = ExtResource( 5 )
 
 [node name="Create" type="Button" parent="CubeCreate"]
-margin_left = 65.0
-margin_top = 286.0
-margin_right = 154.0
-margin_bottom = 306.0
-text = "Create Cube"
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -57.5
+margin_top = -36.0
+margin_right = 57.5
+margin_bottom = -16.0
+text = "Create Primitive"
 
 [node name="Pos" type="VBoxContainer" parent="CubeCreate"]
 anchor_left = 0.5
@@ -316,6 +419,24 @@ margin_left = 35.0
 margin_right = 129.0
 margin_bottom = 24.0
 text = "1"
+
+[node name="Shape" type="Label" parent="CubeCreate"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -76.5
+margin_top = 229.0
+margin_right = 68.5
+margin_bottom = 253.0
+rect_min_size = Vector2( 130, 24 )
+text = "Shape:"
+
+[node name="Input" type="OptionButton" parent="CubeCreate/Shape"]
+margin_left = 47.0
+margin_right = 141.0
+margin_bottom = 24.0
+text = "Cube"
+items = [ "Cube", null, false, 0, null ]
+selected = 0
 
 [node name="3dEnv" type="Spatial" parent="."]
 

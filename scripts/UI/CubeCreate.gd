@@ -72,3 +72,6 @@ func _on_Create_pressed():
 	
 	# Call the MeshBuilder to create a cube with the provided information
 	MeshBuilder.createcube(varray, uvarray, iarray, x, y, z)
+	
+	# finally. dismiss the popup
+	self.visible = false
