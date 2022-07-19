@@ -10,4 +10,8 @@ Current features:
 
 # Disclaimer
 Hammer icon is used as a placeholder and will be replaced. I am not affiliated with Valve and this project does not contain and will not contain any copyrighted source engine code at all.
-Everything that needs to be recreated from source must be done without any actual Source Engine code.
+
+# Note for Contributions
+Everything that needs to be recreated from source must be done without any actual Source Engine code if possible
+
+C# script contributions are not allowed. Scripts must be written in GDScript as I do not have a C# environment setup for godot
