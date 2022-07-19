@@ -18,37 +18,41 @@ func _on_Create_pressed():
 	var z = $Pos/Z/LineEdit.get_text()
 	
 	# And now we define the vertices for the cube
-	# This is where we use width, length, and height. It's a very complex setup
+	# This is where we use width, length, and height.
+	var hfinal = int($Size/H/LineEdit.get_text()) / 2
+	var lfinal = int($Size/L/LineEdit.get_text()) / 2
+	var wfinal = int($Size/W/LineEdit.get_text()) / 2
+	
 	var varray = PoolVector3Array()
-	varray.append(Vector3(-1, -1, 1))
-	varray.append(Vector3(-1, 1, 1))
-	varray.append(Vector3(1, 1, 1))
-	varray.append(Vector3(1, -1, 1))
+	varray.append(Vector3(-wfinal, -hfinal, lfinal))
+	varray.append(Vector3(-wfinal, hfinal, lfinal))
+	varray.append(Vector3(wfinal, hfinal, lfinal))
+	varray.append(Vector3(wfinal, -hfinal, lfinal))
 	# Side 2
-	varray.append(Vector3(1, 1, -1))
-	varray.append(Vector3(1, -1, -1))
-	varray.append(Vector3(1, -1, 1))
-	varray.append(Vector3(1, 1, 1))
+	varray.append(Vector3(wfinal, hfinal, -lfinal))
+	varray.append(Vector3(wfinal, -hfinal, -lfinal))
+	varray.append(Vector3(wfinal, -hfinal, lfinal))
+	varray.append(Vector3(wfinal, hfinal, lfinal))
 	# Side 3
-	varray.append(Vector3(1, -1, -1))
-	varray.append(Vector3(1, 1, -1))
-	varray.append(Vector3(-1, 1, -1))
-	varray.append(Vector3(-1, -1, -1))
+	varray.append(Vector3(wfinal, -hfinal, -lfinal))
+	varray.append(Vector3(wfinal, hfinal, -lfinal))
+	varray.append(Vector3(-wfinal, hfinal, -lfinal))
+	varray.append(Vector3(-wfinal, -hfinal, -lfinal))
 	# Side 4
-	varray.append(Vector3(-1, -1, -1))
-	varray.append(Vector3(-1, 1, -1))
-	varray.append(Vector3(-1, 1, 1))
-	varray.append(Vector3(-1, -1, 1))
+	varray.append(Vector3(-wfinal, -hfinal, -lfinal))
+	varray.append(Vector3(-wfinal, hfinal, -lfinal))
+	varray.append(Vector3(-wfinal, hfinal, lfinal))
+	varray.append(Vector3(-wfinal, -hfinal, lfinal))
 	# Lid 1
-	varray.append(Vector3(1, 1, 1))
-	varray.append(Vector3(-1, 1, 1))
-	varray.append(Vector3(-1, 1, -1))
-	varray.append(Vector3(1, 1, -1))
+	varray.append(Vector3(wfinal, hfinal, lfinal))
+	varray.append(Vector3(-wfinal, hfinal, lfinal))
+	varray.append(Vector3(-wfinal, hfinal, -lfinal))
+	varray.append(Vector3(wfinal, hfinal, -lfinal))
 	# Lid 2
-	varray.append(Vector3(1, -1, -1))
-	varray.append(Vector3(-1, -1, -1))
-	varray.append(Vector3(-1, -1, 1))
-	varray.append(Vector3(1, -1, 1))
+	varray.append(Vector3(1, -hfinal, -lfinal))
+	varray.append(Vector3(-1, -hfinal, -lfinal))
+	varray.append(Vector3(-1, -hfinal, lfinal))
+	varray.append(Vector3(1, -hfinal, lfinal))
 
 	# Setup the UV array using
 	var uvarray = PoolVector2Array()

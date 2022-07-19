@@ -476,7 +476,7 @@ text = "L:"
 margin_left = 35.0
 margin_right = 129.0
 margin_bottom = 24.0
-text = "1"
+text = "2"
 
 [node name="W" type="Label" parent="CubeCreate/Size"]
 margin_top = 28.0
@@ -489,7 +489,7 @@ text = "W:"
 margin_left = 35.0
 margin_right = 129.0
 margin_bottom = 24.0
-text = "1"
+text = "2"
 
 [node name="H" type="Label" parent="CubeCreate/Size"]
 margin_top = 56.0
@@ -502,7 +502,7 @@ text = "H:"
 margin_left = 35.0
 margin_right = 129.0
 margin_bottom = 24.0
-text = "1"
+text = "2"
 
 [node name="Shape" type="Label" parent="CubeCreate"]
 anchor_left = 0.5
