@@ -21,13 +21,14 @@ _global_script_class_icons={
 [application]
 
 config/name="Chisel"
+run/main_scene="res://scenes/Main.tscn"
 boot_splash/image="res://icon.png"
 boot_splash/fullsize=false
 config/icon="res://icon.png"
 
 [autoload]
 
-globals="*res://scenes/globals.tscn"
+globals="*res://scripts/globals.gd"
 
 [display]
 

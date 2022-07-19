@@ -18,6 +18,7 @@ func _on_Create_pressed():
 	var z = $Pos/Z/LineEdit.get_text()
 	
 	# And now we define the vertices for the cube
+	# This is where we use width, length, and height. It's a very complex setup
 	var varray = PoolVector3Array()
 	varray.append(Vector3(-1, -1, 1))
 	varray.append(Vector3(-1, 1, 1))

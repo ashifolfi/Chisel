@@ -1,13 +1,13 @@
 [gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
-[ext_resource path="res://scripts/UI/menubar/App.gd" type="Script" id=2]
-[ext_resource path="res://addons/MeshBuilder/MeshBuilder.gd" type="Script" id=3]
-[ext_resource path="res://scripts/toolswindow.gd" type="Script" id=4]
-[ext_resource path="res://scripts/3DView.gd" type="Script" id=5]
-[ext_resource path="res://assets/ui/mb-bg.png" type="Texture" id=6]
-[ext_resource path="res://scripts/UI/CubeCreate.gd" type="Script" id=7]
-[ext_resource path="res://scripts/camera.gd" type="Script" id=8]
+[ext_resource path="res://addons/MeshBuilder/MeshBuilder.gd" type="Script" id=2]
+[ext_resource path="res://scripts/toolswindow.gd" type="Script" id=3]
+[ext_resource path="res://scripts/3DView.gd" type="Script" id=4]
+[ext_resource path="res://scripts/UI/CubeCreate.gd" type="Script" id=5]
+[ext_resource path="res://scripts/UI/menubar/App.gd" type="Script" id=6]
+[ext_resource path="res://scripts/camera.gd" type="Script" id=7]
+[ext_resource path="res://assets/ui/mb-bg.png" type="Texture" id=8]
 
 [sub_resource type="StyleBoxFlat" id=2]
 draw_center = false
@@ -34,7 +34,7 @@ shadow_size = 2
 shadow_offset = Vector2( 2, 2 )
 
 [sub_resource type="StyleBoxTexture" id=7]
-texture = ExtResource( 6 )
+texture = ExtResource( 8 )
 region_rect = Rect2( 0, 0, 30, 30 )
 
 [sub_resource type="Theme" id=4]
@@ -88,7 +88,7 @@ rect_min_size = Vector2( 40, 30 )
 icon = ExtResource( 1 )
 expand_icon = true
 items = [ "Quit", null, 0, false, false, 0, 0, null, "", false ]
-script = ExtResource( 2 )
+script = ExtResource( 6 )
 
 [node name="File" type="MenuButton" parent="Main/Panel/MenuBar"]
 margin_left = 50.0
@@ -179,7 +179,7 @@ margin_top = 7.0
 margin_right = 94.0
 margin_bottom = 726.0
 rect_pivot_offset = Vector2( -835, -91 )
-script = ExtResource( 4 )
+script = ExtResource( 3 )
 
 [node name="CreateCube" type="Button" parent="Main/ToolsView/Tools"]
 margin_right = 87.0
@@ -194,7 +194,7 @@ margin_top = 7.0
 margin_right = 1366.0
 margin_bottom = 726.0
 rect_pivot_offset = Vector2( -628, 502 )
-script = ExtResource( 5 )
+script = ExtResource( 4 )
 
 [node name="ViewportContainer" type="ViewportContainer" parent="Main/ToolsView/3DView"]
 anchor_right = 1.0
@@ -207,7 +207,7 @@ handle_input_locally = false
 render_target_update_mode = 3
 
 [node name="Camera" type="Camera" parent="Main/ToolsView/3DView/ViewportContainer/Viewport"]
-script = ExtResource( 8 )
+script = ExtResource( 7 )
 
 [node name="CubeCreate" type="WindowDialog" parent="."]
 visible = true
@@ -216,7 +216,7 @@ margin_top = 253.0
 margin_right = 276.0
 margin_bottom = 569.0
 window_title = "Create Cube"
-script = ExtResource( 7 )
+script = ExtResource( 5 )
 
 [node name="Create" type="Button" parent="CubeCreate"]
 margin_left = 65.0
@@ -320,7 +320,7 @@ text = "1"
 [node name="3dEnv" type="Spatial" parent="."]
 
 [node name="MeshBuilder" type="Spatial" parent="3dEnv"]
-script = ExtResource( 3 )
+script = ExtResource( 2 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="3dEnv"]
 environment = SubResource( 8 )
