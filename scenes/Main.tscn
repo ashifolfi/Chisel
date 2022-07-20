@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://addons/MeshBuilder/MeshBuilder.gd" type="Script" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://assets/environments/3d_unshaded.tres" type="Environment" id=13]
 [ext_resource path="res://scripts/ViewportContainerHack.gd" type="Script" id=14]
 [ext_resource path="res://assets/textures/grid.png" type="Texture" id=15]
+[ext_resource path="res://assets/textures/floor.png" type="Texture" id=16]
 
 [sub_resource type="StyleBoxFlat" id=2]
 draw_center = false
@@ -77,6 +78,7 @@ vertex_color_is_srgb = true
 albedo_color = Color( 1, 1, 1, 0.0745098 )
 albedo_texture = ExtResource( 15 )
 uv1_triplanar = true
+uv2_triplanar = true
 
 [sub_resource type="PlaneMesh" id=13]
 material = SubResource( 12 )
@@ -400,7 +402,13 @@ material/0 = SubResource( 11 )
 mesh = SubResource( 13 )
 material/0 = null
 
+[node name="Grid2" type="MeshInstance" parent="3dEnv"]
+transform = Transform( -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0, 0, 0 )
+mesh = SubResource( 13 )
+material/0 = null
+
 [node name="About" type="WindowDialog" parent="."]
+visible = true
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -446,7 +454,7 @@ anchor_bottom = 1.0
 margin_top = -87.5
 margin_bottom = -39.5
 text = "
-Created by K. \"Ashifolfi\" J.
+(C) 2022 by K. \"Ashifolfi\" J.
 Powered by Godot Engine"
 align = 1
 
@@ -475,10 +483,10 @@ text = "Close"
 
 [node name="CubeCreate" type="WindowDialog" parent="."]
 visible = true
-margin_left = 49.0
-margin_top = 253.0
-margin_right = 276.0
-margin_bottom = 569.0
+margin_left = 47.0
+margin_top = 334.0
+margin_right = 487.0
+margin_bottom = 640.0
 window_title = "Primitive Creation"
 script = ExtResource( 5 )
 
@@ -496,9 +504,9 @@ text = "Create Primitive"
 [node name="Pos" type="VBoxContainer" parent="CubeCreate"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -65.0
+margin_left = -204.0
 margin_top = 18.0
-margin_right = 65.0
+margin_right = -74.0
 margin_bottom = 98.0
 
 [node name="X" type="Label" parent="CubeCreate/Pos"]
@@ -543,9 +551,9 @@ text = "0"
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -65.0
-margin_top = 116.0
+margin_top = 19.0
 margin_right = 65.0
-margin_bottom = 196.0
+margin_bottom = 99.0
 
 [node name="L" type="Label" parent="CubeCreate/Size"]
 margin_right = 130.0
@@ -585,13 +593,59 @@ margin_right = 129.0
 margin_bottom = 24.0
 text = "2"
 
+[node name="Rot" type="VBoxContainer" parent="CubeCreate"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = 74.0
+margin_top = 19.0
+margin_right = 204.0
+margin_bottom = 99.0
+
+[node name="X" type="Label" parent="CubeCreate/Rot"]
+margin_right = 130.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 130, 24 )
+text = "X Rot:"
+
+[node name="LineEdit" type="LineEdit" parent="CubeCreate/Rot/X"]
+margin_left = 35.0
+margin_right = 129.0
+margin_bottom = 24.0
+text = "0"
+
+[node name="Y" type="Label" parent="CubeCreate/Rot"]
+margin_top = 28.0
+margin_right = 130.0
+margin_bottom = 52.0
+rect_min_size = Vector2( 130, 24 )
+text = "Y Rot:"
+
+[node name="LineEdit" type="LineEdit" parent="CubeCreate/Rot/Y"]
+margin_left = 35.0
+margin_right = 129.0
+margin_bottom = 24.0
+text = "0"
+
+[node name="Z" type="Label" parent="CubeCreate/Rot"]
+margin_top = 56.0
+margin_right = 130.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 130, 24 )
+text = "Z Rot:"
+
+[node name="LineEdit" type="LineEdit" parent="CubeCreate/Rot/Z"]
+margin_left = 35.0
+margin_right = 129.0
+margin_bottom = 24.0
+text = "0"
+
 [node name="Shape" type="Label" parent="CubeCreate"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -76.5
-margin_top = 208.0
-margin_right = 68.5
-margin_bottom = 232.0
+margin_left = -212.0
+margin_top = 176.0
+margin_right = -67.0
+margin_bottom = 200.0
 rect_min_size = Vector2( 130, 24 )
 text = "Shape:"
 
@@ -603,12 +657,48 @@ text = "Block"
 items = [ "Arch", null, false, 1, null, "Block", null, false, 0, null, "Cylinder", null, false, 2, null, "Sphere", null, false, 3, null, "Spike", null, false, 4, null, "Torus", null, false, 5, null, "Wedge", null, false, 6, null ]
 selected = 1
 
-[node name="Label" type="Label" parent="CubeCreate"]
-margin_top = 242.0
-margin_right = 228.0
-margin_bottom = 273.0
+[node name="Label" type="Label" parent="CubeCreate/Shape"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -75.5
+margin_top = -73.0
+margin_right = 70.5
+margin_bottom = -42.0
 text = "NOTE: Only block is supported right now"
 align = 1
+autowrap = true
+
+[node name="Texture" type="Control" parent="CubeCreate"]
+margin_left = 217.0
+margin_top = 109.0
+margin_right = 431.0
+margin_bottom = 266.0
+
+[node name="TextureRect" type="TextureRect" parent="CubeCreate/Texture"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = -48.0
+margin_top = -54.0
+margin_right = 60.0
+margin_bottom = 54.0
+texture = ExtResource( 16 )
+expand = true
+
+[node name="Button" type="Button" parent="CubeCreate/Texture"]
+margin_left = 71.0
+margin_top = 111.0
+margin_right = 187.0
+margin_bottom = 131.0
+text = "Browse"
+
+[node name="Label" type="Label" parent="CubeCreate/Texture"]
+margin_left = 64.0
+margin_top = 27.0
+margin_right = 221.0
+margin_bottom = 58.0
+text = "textures/floor"
 autowrap = true
 
 [connection signal="pressed" from="Main/ToolsView/Tools/CreateCube" to="Main/ToolsView/Tools" method="_on_CreateCube_pressed"]

@@ -1,12 +1,16 @@
 extends WindowDialog
 
+# Primitive creation dialog
+## (C) 2022 K. "Ashifolfi" J.
+
 # This little variable is pretty important. We call the mesh buidler using this variable
 # the actual path to the node is very long so having this makes it much faster
 onready var MeshBuilder = get_node("/root/UI/3dEnv/MeshBuilder")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	# Don't close on focus loss please
+	self.popup_exclusive = true
 
 
 # Actually create the cube with the settings the user has chosen
