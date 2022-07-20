@@ -26,6 +26,7 @@ func createcube(size, position):
 
 	var material = SpatialMaterial.new()
 	material.set_texture(0, load("res://assets/textures/floor.png"))
+	# UV Mapping setup
 	material.uv1_triplanar = true
 	material.uv2_triplanar = true
 

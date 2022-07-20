@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scripts/UI/TextureBrowser.gd" type="Script" id=1]
+[ext_resource path="res://assets/textures/floor.png" type="Texture" id=2]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Control
@@ -8,6 +9,9 @@ script/source = "extends Control
 func _ready():
 	$TextureBrowser.popup()
 "
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.282353, 0.282353, 0.282353, 1 )
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -34,8 +38,7 @@ anchor_bottom = 1.0
 collapsed = true
 
 [node name="Upper" type="Control" parent="TextureBrowser/HSplitContainer"]
-margin_left = 10.0
-margin_right = 722.0
+margin_right = 730.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 0, 50 )
 
@@ -49,7 +52,7 @@ text = "Clear"
 [node name="LineEdit" type="LineEdit" parent="TextureBrowser/HSplitContainer/Upper"]
 margin_left = 168.0
 margin_top = 7.0
-margin_right = 705.0
+margin_right = 618.0
 margin_bottom = 31.0
 
 [node name="Label" type="Label" parent="TextureBrowser/HSplitContainer/Upper"]
@@ -76,10 +79,47 @@ margin_bottom = 55.0
 text = "Scale:"
 align = 2
 
-[node name="GridContainer" type="GridContainer" parent="TextureBrowser/HSplitContainer"]
+[node name="Accept" type="Button" parent="TextureBrowser/HSplitContainer/Upper"]
+margin_left = 627.0
+margin_top = 7.0
+margin_right = 722.0
+margin_bottom = 31.0
+text = "Accept"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TextureBrowser/HSplitContainer"]
 margin_top = 62.0
 margin_right = 730.0
 margin_bottom = 500.0
+scroll_horizontal_enabled = false
+
+[node name="GridContainer" type="GridContainer" parent="TextureBrowser/HSplitContainer/ScrollContainer"]
+margin_right = 128.0
+margin_bottom = 154.0
 columns = 4
 
+[node name="VSplitContainer" type="VSplitContainer" parent="TextureBrowser/HSplitContainer/ScrollContainer/GridContainer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 128.0
+margin_bottom = 154.0
+rect_min_size = Vector2( 128, 130 )
+custom_styles/bg = SubResource( 2 )
+collapsed = true
+dragger_visibility = 1
+
+[node name="TextureRect" type="TextureRect" parent="TextureBrowser/HSplitContainer/ScrollContainer/GridContainer/VSplitContainer"]
+margin_right = 128.0
+margin_bottom = 128.0
+rect_min_size = Vector2( 128, 128 )
+texture = ExtResource( 2 )
+expand = true
+
+[node name="Label" type="Label" parent="TextureBrowser/HSplitContainer/ScrollContainer/GridContainer/VSplitContainer"]
+margin_top = 140.0
+margin_right = 128.0
+margin_bottom = 154.0
+text = "textures/floor"
+clip_text = true
+
 [connection signal="value_changed" from="TextureBrowser/HSplitContainer/Upper/HSlider" to="TextureBrowser" method="_on_HSlider_value_changed"]
+[connection signal="pressed" from="TextureBrowser/HSplitContainer/Upper/Accept" to="TextureBrowser" method="_on_Accept_pressed"]
