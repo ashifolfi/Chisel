@@ -71,11 +71,12 @@ albedo_color = Color( 0.529412, 0.839216, 0.00784314, 1 )
 [sub_resource type="SpatialMaterial" id=12]
 flags_transparent = true
 flags_unshaded = true
+flags_world_triplanar = true
 flags_albedo_tex_force_srgb = true
 vertex_color_is_srgb = true
 albedo_color = Color( 1, 1, 1, 0.0745098 )
 albedo_texture = ExtResource( 15 )
-uv1_scale = Vector3( 100, 100, 100 )
+uv1_triplanar = true
 
 [sub_resource type="PlaneMesh" id=13]
 material = SubResource( 12 )

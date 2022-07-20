@@ -25,7 +25,9 @@ func createcube(size, position):
 	mesh.add_child(select_body)
 
 	var material = SpatialMaterial.new()
-	material.set_texture(0, load("res://assets/textures/dev256.png"))
+	material.set_texture(0, load("res://assets/textures/floor.png"))
+	material.uv1_triplanar = true
+	material.uv2_triplanar = true
 
 	mesh.set_mesh(primitive)
 	mesh.set_surface_material(0,material) #sets the material
