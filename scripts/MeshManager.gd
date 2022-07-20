@@ -10,5 +10,6 @@ func delete_mesh(body):
 	
 	if is_instance_valid(body.get_parent()):
 		body.get_parent().queue_free()
+		self.selected_mesh = null
 	else:
 		print("[WARN] Attempted to delete_mesh non-valid parent! File may be corrupt!")

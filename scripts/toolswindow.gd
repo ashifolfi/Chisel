@@ -6,7 +6,7 @@ func _on_CreateCube_pressed():
 	get_node("/root/UI/CubeCreate").popup()
 
 func _on_Select_pressed():
-	globals.ToolsMode = "select"
+	MeshManager.selected_mesh = null
 
 
 func _on_Delete_pressed():

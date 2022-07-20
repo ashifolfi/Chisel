@@ -21,8 +21,6 @@ var _d = false
 var _q = false
 var _e = false
 
-onready var MeshManager = get_node("/root/UI/3dEnv/MeshManager")
-
 func _input(event):
 	# check to see if we're in the 3dview first
 	if globals.in_3dview == true:
@@ -106,11 +104,3 @@ func _update_mouselook():
 		rotate_y(deg2rad(-yaw))
 		rotate_object_local(Vector3(1,0,0), deg2rad(-pitch))
 
-# Raycasting test
-func _physics_process(delta):
-	if $RayCast.is_colliding():
-		get_node("../../../facing/value").text = str($RayCast.get_collider())
-		MeshManager.selected_mesh = $RayCast.get_collider()
-	else:
-		get_node("../../../facing/value").text = "nothing"
-		MeshManager.selected_mesh = null
