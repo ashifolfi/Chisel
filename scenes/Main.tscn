@@ -266,7 +266,7 @@ render_target_update_mode = 3
 physics_object_picking = true
 
 [node name="Camera" type="Camera" parent="Main/ToolsView/3DView/ViewportContainer/Viewport"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.20454 )
+transform = Transform( 1, 0, 0, 0, 0.979949, 0.199248, 0, -0.199248, 0.979949, 0, 0.51845, 1.20454 )
 script = ExtResource( 7 )
 
 [node name="Label" type="Label" parent="Main/ToolsView/3DView"]
@@ -408,7 +408,6 @@ mesh = SubResource( 13 )
 material/0 = null
 
 [node name="About" type="WindowDialog" parent="."]
-visible = true
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -482,7 +481,6 @@ margin_bottom = 27.0
 text = "Close"
 
 [node name="CubeCreate" type="WindowDialog" parent="."]
-visible = true
 margin_left = 47.0
 margin_top = 334.0
 margin_right = 487.0
