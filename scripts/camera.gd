@@ -21,6 +21,8 @@ var _d = false
 var _q = false
 var _e = false
 
+onready var MeshManager = get_node("/root/UI/3dEnv/MeshManager")
+
 func _input(event):
 	# check to see if we're in the 3dview first
 	if globals.in_3dview == true:
@@ -34,9 +36,9 @@ func _input(event):
 				BUTTON_RIGHT: # Only allows rotation if right click down
 					Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED if event.pressed else Input.MOUSE_MODE_VISIBLE)
 					if event.pressed:
-						globals.ToolsMode = "Camera"
+						globals.camera_on = true
 					else:
-						globals.ToolsMode = "Nothing"
+						globals.camera_on = false
 				BUTTON_WHEEL_UP: # Increases max velocity
 					_vel_multiplier = clamp(_vel_multiplier * 1.1, 0.2, 20)
 				BUTTON_WHEEL_DOWN: # Decereases max velocity
@@ -65,7 +67,7 @@ func _process(delta):
 
 # Updates camera movement
 func _update_movement(delta):
-	if (globals.ToolsMode == "Camera"):
+	if (globals.camera_on == true):
 		# Computes desired direction from key states
 		_direction = Vector3(_d as float - _a as float, 
 							 _e as float - _q as float,
@@ -103,3 +105,12 @@ func _update_mouselook():
 	
 		rotate_y(deg2rad(-yaw))
 		rotate_object_local(Vector3(1,0,0), deg2rad(-pitch))
+
+# Raycasting test
+func _physics_process(delta):
+	if $RayCast.is_colliding():
+		get_node("../../../facing/value").text = str($RayCast.get_collider())
+		MeshManager.selected_mesh = $RayCast.get_collider()
+	else:
+		get_node("../../../facing/value").text = "nothing"
+		MeshManager.selected_mesh = null

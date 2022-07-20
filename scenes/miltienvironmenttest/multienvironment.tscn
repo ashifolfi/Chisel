@@ -1,0 +1,53 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://scenes/miltienvironmenttest/multifile3d2.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/miltienvironmenttest/multifile3d1.tscn" type="PackedScene" id=2]
+[ext_resource path="res://multienvironment.gd" type="Script" id=3]
+
+[sub_resource type="Environment" id=1]
+ambient_light_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="World" id=2]
+environment = SubResource( 1 )
+
+[sub_resource type="Environment" id=3]
+
+[sub_resource type="World" id=4]
+environment = SubResource( 3 )
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+
+[node name="ViewportContainer" type="ViewportContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -683.0
+rect_pivot_offset = Vector2( 976, 308 )
+
+[node name="Viewport" type="Viewport" parent="ViewportContainer"]
+size = Vector2( 683, 768 )
+own_world = true
+world = SubResource( 2 )
+handle_input_locally = false
+render_target_update_mode = 3
+
+[node name="Spatial" parent="ViewportContainer/Viewport" instance=ExtResource( 2 )]
+
+[node name="ViewportContainer2" type="ViewportContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 683.0
+rect_pivot_offset = Vector2( 976, 308 )
+
+[node name="Viewport" type="Viewport" parent="ViewportContainer2"]
+size = Vector2( 683, 768 )
+own_world = true
+world = SubResource( 4 )
+handle_input_locally = false
+render_target_update_mode = 3
+
+[node name="Spatial" parent="ViewportContainer2/Viewport" instance=ExtResource( 1 )]
+
+[connection signal="mouse_entered" from="ViewportContainer" to="." method="_on_ViewportContainer_mouse_entered"]

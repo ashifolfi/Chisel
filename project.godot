@@ -10,11 +10,23 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Node",
+"class": "MeshBuilder",
+"language": "GDScript",
+"path": "res://addons/MeshBuilder/MeshBuilder.gd"
+}, {
+"base": "Spatial",
+"class": "MeshManager",
+"language": "GDScript",
+"path": "res://scripts/MeshManager.gd"
+}, {
+"base": "Node",
 "class": "VMF",
 "language": "GDScript",
 "path": "res://addons/vmflib/VMF.gd"
 } ]
 _global_script_class_icons={
+"MeshBuilder": "",
+"MeshManager": "",
 "VMF": ""
 }
 

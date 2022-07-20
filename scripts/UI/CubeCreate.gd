@@ -17,65 +17,13 @@ func _on_Create_pressed():
 	var y = $Pos/Y/LineEdit.get_text()
 	var z = $Pos/Z/LineEdit.get_text()
 	
-	# And now we define the vertices for the cube
-	# This is where we use width, length, and height.
+	# Grab the size variables
 	var hfinal = float($Size/H/LineEdit.get_text())
 	var lfinal = float($Size/L/LineEdit.get_text())
 	var wfinal = float($Size/W/LineEdit.get_text())
 	
-	var varray = PoolVector3Array()
-	varray.append(Vector3(0, 0, lfinal))
-	varray.append(Vector3(0, hfinal, lfinal))
-	varray.append(Vector3(wfinal, hfinal, lfinal))
-	varray.append(Vector3(wfinal, 0, lfinal))
-	# Side 2
-	varray.append(Vector3(wfinal, hfinal, 0))
-	varray.append(Vector3(wfinal, 0, 0))
-	varray.append(Vector3(wfinal, 0, lfinal))
-	varray.append(Vector3(wfinal, hfinal, lfinal))
-	# Side 3
-	varray.append(Vector3(wfinal, 0, 0))
-	varray.append(Vector3(wfinal, hfinal, 0))
-	varray.append(Vector3(0, hfinal, 0))
-	varray.append(Vector3(0, 0, 0))
-	# Side 4
-	varray.append(Vector3(0, 0, 0))
-	varray.append(Vector3(0, hfinal, 0))
-	varray.append(Vector3(0, hfinal, lfinal))
-	varray.append(Vector3(0, 0, lfinal))
-	# Lid 1
-	varray.append(Vector3(wfinal, hfinal, lfinal))
-	varray.append(Vector3(0, hfinal, lfinal))
-	varray.append(Vector3(0, hfinal, 0))
-	varray.append(Vector3(wfinal, hfinal, 0))
-	# Lid 2
-	varray.append(Vector3(wfinal, 0, 0))
-	varray.append(Vector3(0, 0, 0))
-	varray.append(Vector3(0, 0, lfinal))
-	varray.append(Vector3(wfinal, 0, lfinal))
-
-	# Setup the UV array using
-	var uvarray = PoolVector2Array()
-	for i in 6:
-		uvarray.append(Vector2(0, 0))
-		uvarray.append(Vector2(0, 1))
-		uvarray.append(Vector2(1, 1))
-		uvarray.append(Vector2(1, 0))
-	
-	# and of course our index array
-	var iarray = PoolIntArray()
-	var offset = 0
-	for i in 6:
-		iarray.append(offset)
-		iarray.append(offset+1)
-		iarray.append(offset+2)
-		iarray.append(offset+2)
-		iarray.append(offset+3)
-		iarray.append(offset)
-		offset = offset + 4
-	
 	# Call the MeshBuilder to create a cube with the provided information
-	MeshBuilder.createcube(varray, uvarray, iarray, x, y, z)
+	MeshBuilder.createcube(Vector3(wfinal, hfinal, lfinal), Vector3(x, y, z))
 	
 	# finally. dismiss the popup
 	self.visible = false
