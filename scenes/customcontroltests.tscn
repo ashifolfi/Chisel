@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://scripts/UI/TextureBrowser.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://scripts/UI/menubar/File.gd" type="Script" id=5]
 [ext_resource path="res://scripts/FileManager.gd" type="Script" id=6]
 [ext_resource path="res://scripts/AssetManager.gd" type="Script" id=7]
+[ext_resource path="res://assets/textures/grid.png" type="Texture" id=8]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Control
@@ -56,6 +57,41 @@ MenuButton/styles/normal = null
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = SubResource( 1 )
+
+[node name="Background" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="ColorRect" type="ColorRect" parent="Background"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="Grid" type="TextureRect" parent="Background"]
+modulate = Color( 0.478431, 0.478431, 0.478431, 0.258824 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -683.0
+margin_bottom = -384.0
+rect_scale = Vector2( 2, 2 )
+texture = ExtResource( 8 )
+expand = true
+stretch_mode = 2
+
+[node name="Icon" type="TextureRect" parent="Background"]
+modulate = Color( 0.28, 0.28, 0.28, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 2 )
+stretch_mode = 4
+
+[node name="Version" type="Label" parent="Background"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -14.0
+text = "Chisel version 0.0.1 - Proof of Concept"
+align = 1
 
 [node name="TextureBrowser" type="WindowDialog" parent="."]
 visible = true
@@ -127,6 +163,13 @@ margin_top = 7.0
 margin_right = 707.0
 margin_bottom = 31.0
 text = "Accept"
+
+[node name="Reload" type="Button" parent="TextureBrowser/HSplitContainer/Upper"]
+margin_left = 627.0
+margin_top = 40.0
+margin_right = 707.0
+margin_bottom = 64.0
+text = "Reload"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="TextureBrowser/HSplitContainer"]
 margin_top = 62.0
@@ -248,3 +291,4 @@ script = ExtResource( 7 )
 
 [connection signal="value_changed" from="TextureBrowser/HSplitContainer/Upper/HSlider" to="TextureBrowser" method="_on_HSlider_value_changed"]
 [connection signal="pressed" from="TextureBrowser/HSplitContainer/Upper/Accept" to="TextureBrowser" method="_on_Accept_pressed"]
+[connection signal="pressed" from="TextureBrowser/HSplitContainer/Upper/Reload" to="TextureBrowser" method="_on_Reload_pressed"]

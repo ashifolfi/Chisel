@@ -9,7 +9,7 @@ func _ready():
 func _on_id_pressed(ID):
 	# New Map
 	if ID == 0:
-		pass
+		get_node("/root/UI/Main/ToolsView/3DView").visible = true
 	# New map from template
 	elif ID == 1:
 		pass

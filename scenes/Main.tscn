@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://addons/MeshBuilder/MeshBuilder.gd" type="Script" id=2]
@@ -18,6 +18,10 @@
 [ext_resource path="res://assets/textures/floor.png" type="Texture" id=16]
 [ext_resource path="res://scripts/FileManager.gd" type="Script" id=17]
 [ext_resource path="res://scripts/AssetManager.gd" type="Script" id=18]
+[ext_resource path="res://assets/ui/button_groups/Tools.tres" type="ButtonGroup" id=19]
+[ext_resource path="res://scripts/UI/menubar/File.gd" type="Script" id=20]
+[ext_resource path="res://scripts/StartupInit.gd" type="Script" id=21]
+[ext_resource path="res://scripts/UI/TextureBrowser.gd" type="Script" id=22]
 
 [sub_resource type="StyleBoxFlat" id=14]
 draw_center = false
@@ -93,6 +97,31 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 13
 size_flags_vertical = 13
+script = ExtResource( 21 )
+
+[node name="Background" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="ColorRect" type="ColorRect" parent="Background"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.141176, 0.141176, 0.141176, 1 )
+
+[node name="Icon" type="TextureRect" parent="Background"]
+modulate = Color( 0.28, 0.28, 0.28, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 1 )
+stretch_mode = 4
+
+[node name="Version" type="Label" parent="Background"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -14.0
+text = "Chisel version 0.0.1 - Proof of Concept"
+align = 1
 
 [node name="Main" type="VSplitContainer" parent="."]
 anchor_right = 1.0
@@ -137,6 +166,7 @@ text = "File"
 flat = false
 items = [ "New Map", null, 0, false, false, 0, 0, null, "", false, "New Map from Template", null, 0, false, false, 1, 0, null, "", false, "Open file", null, 0, false, false, 2, 0, null, "", false, "", null, 0, false, false, 3, 0, null, "", true, "Save", null, 0, false, false, 4, 0, null, "", false, "Save As", null, 0, false, false, 5, 0, null, "", false, "", null, 0, false, false, 6, 0, null, "", true, "Run Map", null, 0, false, false, 7, 0, null, "", false, "", null, 0, false, false, 8, 0, null, "", true, "Close", null, 0, false, false, 9, 0, null, "", false ]
 switch_on_hover = true
+script = ExtResource( 20 )
 
 [node name="Edit" type="MenuButton" parent="Main/Panel/MenuBar"]
 margin_left = 110.0
@@ -226,6 +256,7 @@ script = ExtResource( 3 )
 margin_right = 87.0
 margin_bottom = 71.0
 rect_min_size = Vector2( 87, 71 )
+group = ExtResource( 19 )
 text = "Primitive"
 clip_text = true
 
@@ -234,6 +265,7 @@ margin_top = 75.0
 margin_right = 87.0
 margin_bottom = 146.0
 rect_min_size = Vector2( 87, 71 )
+group = ExtResource( 19 )
 text = "Deselect"
 clip_text = true
 
@@ -242,6 +274,7 @@ margin_top = 150.0
 margin_right = 87.0
 margin_bottom = 221.0
 rect_min_size = Vector2( 87, 71 )
+group = ExtResource( 19 )
 text = "Delete"
 clip_text = true
 
@@ -686,7 +719,7 @@ margin_bottom = 54.0
 texture = ExtResource( 16 )
 expand = true
 
-[node name="Button" type="Button" parent="CubeCreate/Texture"]
+[node name="Browse" type="Button" parent="CubeCreate/Texture"]
 margin_left = 71.0
 margin_top = 111.0
 margin_right = 187.0
@@ -707,6 +740,92 @@ script = ExtResource( 17 )
 [node name="AssetManager" type="Node" parent="."]
 script = ExtResource( 18 )
 
+[node name="TextureBrowser" type="WindowDialog" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -365.0
+margin_top = -250.0
+margin_right = 365.0
+margin_bottom = 250.0
+window_title = "Texture Browser"
+script = ExtResource( 22 )
+
+[node name="HSplitContainer" type="VSplitContainer" parent="TextureBrowser"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = -10.0
+collapsed = true
+
+[node name="Upper" type="Control" parent="TextureBrowser/HSplitContainer"]
+margin_right = 710.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 0, 50 )
+
+[node name="Clear" type="Button" parent="TextureBrowser/HSplitContainer/Upper"]
+margin_left = 87.0
+margin_top = 7.0
+margin_right = 158.0
+margin_bottom = 31.0
+text = "Clear"
+
+[node name="LineEdit" type="LineEdit" parent="TextureBrowser/HSplitContainer/Upper"]
+margin_left = 168.0
+margin_top = 7.0
+margin_right = 618.0
+margin_bottom = 31.0
+
+[node name="Label" type="Label" parent="TextureBrowser/HSplitContainer/Upper"]
+margin_top = 12.0
+margin_right = 82.0
+margin_bottom = 26.0
+text = "Name Filter:"
+
+[node name="HSlider" type="HSlider" parent="TextureBrowser/HSplitContainer/Upper"]
+margin_left = 87.0
+margin_top = 41.0
+margin_right = 226.0
+margin_bottom = 57.0
+min_value = 4.0
+max_value = 8.0
+value = 4.0
+tick_count = 5
+ticks_on_borders = true
+
+[node name="Label2" type="Label" parent="TextureBrowser/HSplitContainer/Upper"]
+margin_top = 41.0
+margin_right = 82.0
+margin_bottom = 55.0
+text = "Scale:"
+align = 2
+
+[node name="Accept" type="Button" parent="TextureBrowser/HSplitContainer/Upper"]
+margin_left = 627.0
+margin_top = 7.0
+margin_right = 707.0
+margin_bottom = 31.0
+text = "Accept"
+
+[node name="Reload" type="Button" parent="TextureBrowser/HSplitContainer/Upper"]
+margin_left = 627.0
+margin_top = 40.0
+margin_right = 707.0
+margin_bottom = 64.0
+text = "Reload"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TextureBrowser/HSplitContainer"]
+margin_top = 62.0
+margin_right = 710.0
+margin_bottom = 480.0
+scroll_horizontal_enabled = false
+
+[node name="GridContainer" type="GridContainer" parent="TextureBrowser/HSplitContainer/ScrollContainer"]
+columns = 4
+
 [connection signal="pressed" from="Main/ToolsView/Tools/CreateCube" to="Main/ToolsView/Tools" method="_on_CreateCube_pressed"]
 [connection signal="pressed" from="Main/ToolsView/Tools/Select" to="Main/ToolsView/Tools" method="_on_Select_pressed"]
 [connection signal="pressed" from="Main/ToolsView/Tools/Delete" to="Main/ToolsView/Tools" method="_on_Delete_pressed"]
@@ -717,3 +836,7 @@ script = ExtResource( 18 )
 [connection signal="pressed" from="About/HBoxContainer/SourceCode" to="About" method="_on_SourceCode_pressed"]
 [connection signal="pressed" from="About/HBoxContainer/Close" to="About" method="_on_Close_pressed"]
 [connection signal="pressed" from="CubeCreate/Create" to="CubeCreate" method="_on_Create_pressed"]
+[connection signal="pressed" from="CubeCreate/Texture/Browse" to="CubeCreate" method="_on_Browse_pressed"]
+[connection signal="value_changed" from="TextureBrowser/HSplitContainer/Upper/HSlider" to="TextureBrowser" method="_on_HSlider_value_changed"]
+[connection signal="pressed" from="TextureBrowser/HSplitContainer/Upper/Accept" to="TextureBrowser" method="_on_Accept_pressed"]
+[connection signal="pressed" from="TextureBrowser/HSplitContainer/Upper/Reload" to="TextureBrowser" method="_on_Reload_pressed"]

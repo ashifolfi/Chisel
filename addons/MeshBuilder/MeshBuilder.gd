@@ -5,7 +5,7 @@ onready var MeshManager = get_node("../MeshManager")
 
 # The new cube creation function.
 # To show you the power of actually reading documentation I've cut the line count in half!
-func createcube(size, position):
+func createcube(size, position, texture):
 	var mesh = MeshInstance.new()
 	MeshManager.add_child(mesh)
 	var primitive = CubeMesh.new()
@@ -23,9 +23,9 @@ func createcube(size, position):
 	select_body.add_child(col_shape)
 	select_body.set_ray_pickable(true)
 	mesh.add_child(select_body)
-
+	
 	var material = SpatialMaterial.new()
-	material.set_texture(0, load("res://assets/textures/floor.png"))
+	material.set_texture(0, texture)
 	# UV Mapping setup
 	material.uv1_triplanar = true
 	material.uv2_triplanar = true

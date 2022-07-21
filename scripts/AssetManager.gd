@@ -7,10 +7,17 @@ class_name AssetManager
 # when editing a map
 
 onready var TextureList = {}
+onready var ActiveTexture = {}
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	load_texture("floor", "")
+	load_texture("hint", "")
+	load_texture("nodraw", "")
+	load_texture("skip", "")
+	load_texture("trigger", "")
+	load_texture("wall", "")
+	ActiveTexture = TextureList.get("floor")
 
 # Add item to the texture list
 # TODO: Move texture loading to entirely external using source engine structure
