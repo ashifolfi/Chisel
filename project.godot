@@ -80,7 +80,7 @@ window/stretch/aspect="keep"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/MeshBuilder/plugin.cfg", "res://addons/vmflib/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/DragDrop3D/plugin.cfg", "res://addons/MeshBuilder/plugin.cfg", "res://addons/vmflib/plugin.cfg" )
 
 [locale]
 
