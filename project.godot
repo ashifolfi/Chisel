@@ -9,6 +9,16 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node",
+"class": "AssetManager",
+"language": "GDScript",
+"path": "res://scripts/AssetManager.gd"
+}, {
+"base": "Node",
+"class": "FileManager",
+"language": "GDScript",
+"path": "res://scripts/FileManager.gd"
+}, {
 "base": "Spatial",
 "class": "MeshBuilder",
 "language": "GDScript",
@@ -30,6 +40,8 @@ _global_script_classes=[ {
 "path": "res://addons/vmflib/VMF.gd"
 } ]
 _global_script_class_icons={
+"AssetManager": "",
+"FileManager": "",
 "MeshBuilder": "",
 "MeshManager": "",
 "TextureBrowser": "",

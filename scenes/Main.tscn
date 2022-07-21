@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://addons/MeshBuilder/MeshBuilder.gd" type="Script" id=2]
@@ -16,8 +16,10 @@
 [ext_resource path="res://scripts/ViewportContainerHack.gd" type="Script" id=14]
 [ext_resource path="res://assets/textures/grid.png" type="Texture" id=15]
 [ext_resource path="res://assets/textures/floor.png" type="Texture" id=16]
+[ext_resource path="res://scripts/FileManager.gd" type="Script" id=17]
+[ext_resource path="res://scripts/AssetManager.gd" type="Script" id=18]
 
-[sub_resource type="StyleBoxFlat" id=2]
+[sub_resource type="StyleBoxFlat" id=14]
 draw_center = false
 border_width_left = 2
 border_width_top = 2
@@ -26,12 +28,12 @@ shadow_color = Color( 0, 0, 0, 1 )
 shadow_size = 2
 shadow_offset = Vector2( 2, 2 )
 
-[sub_resource type="StyleBoxEmpty" id=5]
+[sub_resource type="StyleBoxEmpty" id=15]
 content_margin_left = 2.0
 content_margin_right = 2.0
 content_margin_top = 2.0
 
-[sub_resource type="StyleBoxFlat" id=6]
+[sub_resource type="StyleBoxFlat" id=16]
 bg_color = Color( 0.26, 0.26, 0.26, 1 )
 draw_center = false
 border_width_left = 2
@@ -41,15 +43,15 @@ shadow_color = Color( 0.75, 0.75, 0.75, 1 )
 shadow_size = 2
 shadow_offset = Vector2( 2, 2 )
 
-[sub_resource type="StyleBoxTexture" id=7]
+[sub_resource type="StyleBoxTexture" id=17]
 texture = ExtResource( 8 )
 region_rect = Rect2( 0, 0, 30, 30 )
 
 [sub_resource type="Theme" id=4]
-MenuButton/styles/hover = SubResource( 2 )
-MenuButton/styles/normal = SubResource( 5 )
-MenuButton/styles/pressed = SubResource( 6 )
-Panel/styles/panel = SubResource( 7 )
+MenuButton/styles/hover = SubResource( 14 )
+MenuButton/styles/normal = SubResource( 15 )
+MenuButton/styles/pressed = SubResource( 16 )
+Panel/styles/panel = SubResource( 17 )
 
 [sub_resource type="Theme" id=1]
 MenuButton/styles/normal = null
@@ -698,6 +700,12 @@ margin_right = 221.0
 margin_bottom = 58.0
 text = "textures/floor"
 autowrap = true
+
+[node name="FileManager" type="Node" parent="."]
+script = ExtResource( 17 )
+
+[node name="AssetManager" type="Node" parent="."]
+script = ExtResource( 18 )
 
 [connection signal="pressed" from="Main/ToolsView/Tools/CreateCube" to="Main/ToolsView/Tools" method="_on_CreateCube_pressed"]
 [connection signal="pressed" from="Main/ToolsView/Tools/Select" to="Main/ToolsView/Tools" method="_on_Select_pressed"]
