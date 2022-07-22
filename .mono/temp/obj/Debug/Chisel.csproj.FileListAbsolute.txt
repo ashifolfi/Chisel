@@ -1,9 +1,0 @@
-C:\Users\kemon\Documents\Chisel-git\.mono\temp\bin\Debug\Chisel.dll
-C:\Users\kemon\Documents\Chisel-git\.mono\temp\bin\Debug\Chisel.pdb
-C:\Users\kemon\Documents\Chisel-git\.mono\temp\obj\Debug\Chisel.csproj.AssemblyReference.cache
-C:\Users\kemon\Documents\Chisel-git\.mono\temp\obj\Debug\Chisel.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\kemon\Documents\Chisel-git\.mono\temp\obj\Debug\Chisel.AssemblyInfoInputs.cache
-C:\Users\kemon\Documents\Chisel-git\.mono\temp\obj\Debug\Chisel.AssemblyInfo.cs
-C:\Users\kemon\Documents\Chisel-git\.mono\temp\obj\Debug\Chisel.csproj.CoreCompileInputs.cache
-C:\Users\kemon\Documents\Chisel-git\.mono\temp\obj\Debug\Chisel.dll
-C:\Users\kemon\Documents\Chisel-git\.mono\temp\obj\Debug\Chisel.pdb
