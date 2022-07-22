@@ -1,27 +1,27 @@
 [gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
-[ext_resource path="res://addons/MeshBuilder/MeshBuilder.gd" type="Script" id=2]
+[ext_resource path="res://scripts/UI/CubeCreate.cs" type="Script" id=2]
 [ext_resource path="res://scripts/toolswindow.gd" type="Script" id=3]
 [ext_resource path="res://scripts/3DView.gd" type="Script" id=4]
-[ext_resource path="res://scripts/UI/CubeCreate.gd" type="Script" id=5]
+[ext_resource path="res://scripts/UI/TextureBrowser.cs" type="Script" id=5]
 [ext_resource path="res://scripts/UI/menubar/App.gd" type="Script" id=6]
 [ext_resource path="res://scripts/camera.gd" type="Script" id=7]
 [ext_resource path="res://assets/ui/mb-bg.png" type="Texture" id=8]
 [ext_resource path="res://scripts/UI/menubar/View.gd" type="Script" id=9]
 [ext_resource path="res://scripts/UI/About.gd" type="Script" id=10]
 [ext_resource path="res://scripts/UI/menubar/Help.gd" type="Script" id=11]
-[ext_resource path="res://scripts/MeshManager.gd" type="Script" id=12]
+[ext_resource path="res://scripts/MeshBuilder.cs" type="Script" id=12]
 [ext_resource path="res://assets/environments/3d_unshaded.tres" type="Environment" id=13]
 [ext_resource path="res://scripts/ViewportContainerHack.gd" type="Script" id=14]
 [ext_resource path="res://assets/textures/grid.png" type="Texture" id=15]
 [ext_resource path="res://assets/textures/floor.png" type="Texture" id=16]
 [ext_resource path="res://scripts/FileManager.gd" type="Script" id=17]
-[ext_resource path="res://scripts/AssetManager.gd" type="Script" id=18]
+[ext_resource path="res://scripts/AssetManager.cs" type="Script" id=18]
 [ext_resource path="res://assets/ui/button_groups/Tools.tres" type="ButtonGroup" id=19]
 [ext_resource path="res://scripts/UI/menubar/File.gd" type="Script" id=20]
-[ext_resource path="res://scripts/StartupInit.gd" type="Script" id=21]
-[ext_resource path="res://scripts/UI/TextureBrowser.gd" type="Script" id=22]
+[ext_resource path="res://scripts/StartupInit.cs" type="Script" id=21]
+[ext_resource path="res://scripts/MeshManager.cs" type="Script" id=22]
 
 [sub_resource type="StyleBoxFlat" id=14]
 draw_center = false
@@ -407,13 +407,13 @@ text = "2D Side"
 [node name="3dEnv" type="Spatial" parent="."]
 
 [node name="MeshBuilder" type="Spatial" parent="3dEnv"]
-script = ExtResource( 2 )
+script = ExtResource( 12 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="3dEnv"]
 environment = ExtResource( 13 )
 
 [node name="MeshManager" type="Spatial" parent="3dEnv"]
-script = ExtResource( 12 )
+script = ExtResource( 22 )
 
 [node name="AxisHelper" type="Spatial" parent="3dEnv"]
 transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0 )
@@ -521,7 +521,7 @@ margin_top = 334.0
 margin_right = 487.0
 margin_bottom = 640.0
 window_title = "Primitive Creation"
-script = ExtResource( 5 )
+script = ExtResource( 2 )
 
 [node name="Create" type="Button" parent="CubeCreate"]
 anchor_left = 0.5
@@ -750,7 +750,7 @@ margin_top = -250.0
 margin_right = 365.0
 margin_bottom = 250.0
 window_title = "Texture Browser"
-script = ExtResource( 22 )
+script = ExtResource( 5 )
 
 [node name="HSplitContainer" type="VSplitContainer" parent="TextureBrowser"]
 anchor_right = 1.0
@@ -835,8 +835,8 @@ columns = 4
 [connection signal="mouse_exited" from="Main/ToolsView/3DView/ViewportContainer" to="Main/ToolsView/3DView" method="_on_ViewportContainer_mouse_exited"]
 [connection signal="pressed" from="About/HBoxContainer/SourceCode" to="About" method="_on_SourceCode_pressed"]
 [connection signal="pressed" from="About/HBoxContainer/Close" to="About" method="_on_Close_pressed"]
-[connection signal="pressed" from="CubeCreate/Create" to="CubeCreate" method="_on_Create_pressed"]
-[connection signal="pressed" from="CubeCreate/Texture/Browse" to="CubeCreate" method="_on_Browse_pressed"]
+[connection signal="pressed" from="CubeCreate/Create" to="CubeCreate" method="OnCreatePressed"]
+[connection signal="pressed" from="CubeCreate/Texture/Browse" to="CubeCreate" method="OnBrowsePressed"]
 [connection signal="value_changed" from="TextureBrowser/HSplitContainer/Upper/HSlider" to="TextureBrowser" method="_on_HSlider_value_changed"]
 [connection signal="pressed" from="TextureBrowser/HSplitContainer/Upper/Accept" to="TextureBrowser" method="_on_Accept_pressed"]
 [connection signal="pressed" from="TextureBrowser/HSplitContainer/Upper/Reload" to="TextureBrowser" method="_on_Reload_pressed"]

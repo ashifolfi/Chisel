@@ -10,34 +10,14 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Node",
-"class": "AssetManager",
-"language": "GDScript",
-"path": "res://scripts/AssetManager.gd"
-}, {
-"base": "Node",
 "class": "FileManager",
 "language": "GDScript",
 "path": "res://scripts/FileManager.gd"
-}, {
-"base": "Spatial",
-"class": "MeshBuilder",
-"language": "GDScript",
-"path": "res://addons/MeshBuilder/MeshBuilder.gd"
-}, {
-"base": "Spatial",
-"class": "MeshManager",
-"language": "GDScript",
-"path": "res://scripts/MeshManager.gd"
 }, {
 "base": "WindowDialog",
 "class": "TextureBrowser",
 "language": "GDScript",
 "path": "res://scripts/UI/TextureBrowser.gd"
-}, {
-"base": "CheckButton",
-"class": "TextureRadio",
-"language": "GDScript",
-"path": "res://scripts/UI/TextureSelect.gd"
 }, {
 "base": "Node",
 "class": "VMF",
@@ -45,12 +25,8 @@ _global_script_classes=[ {
 "path": "res://addons/vmflib/VMF.gd"
 } ]
 _global_script_class_icons={
-"AssetManager": "",
 "FileManager": "",
-"MeshBuilder": "",
-"MeshManager": "",
 "TextureBrowser": "",
-"TextureRadio": "",
 "VMF": ""
 }
 
@@ -80,7 +56,7 @@ window/stretch/aspect="keep"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/DragDrop3D/plugin.cfg", "res://addons/MeshBuilder/plugin.cfg", "res://addons/vmflib/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/MeshBuilder/plugin.cfg", "res://addons/vmflib/plugin.cfg" )
 
 [locale]
 
