@@ -57,10 +57,8 @@ public class TextureBrowser : WindowDialog
 			TexRec.Expand = true;
 			String TexPath;
 			AssetManager.TextureList[Tex].TryGetValue("texture", out TexPath);
-            GD.Print(TexPath);
-            GD.Print((StreamTexture)GD.Load(TexPath));
+            TexRec.RectMinSize = new Vector2(128, 128);
 			TexRec.Texture = (StreamTexture)GD.Load(TexPath);
-            GD.Print(TexRec.Texture);
 			TexItem.AddChild(TexRec);
 			// Create Name Label
 			Label TexName = new Label();
