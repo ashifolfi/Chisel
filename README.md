@@ -15,4 +15,4 @@ Current features:
 <h1 align="center"> Note for Contributions </h1>
 Everything that needs to be recreated from source must be done without any actual Source Engine code. If that's not possible don't bother with the feature.
 
-C# script contributions are not allowed. Scripts must be written in GDScript as I do not have a C# environment setup for godot
+This project is written in mostly C#. The only GDScript files that remain either couldn't be converted or haven't been converted yet.
