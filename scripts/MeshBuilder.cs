@@ -51,7 +51,7 @@ public class MeshBuilder : Spatial
 
         // Setup the material
         SpatialMaterial Material = new SpatialMaterial();
-        Material.DetailAlbedo = Texture;
+        Material.AlbedoTexture = Texture;
         // Change uv variables
         Material.Uv1Triplanar = true;
         Material.Uv2Triplanar = true;

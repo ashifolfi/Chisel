@@ -59,6 +59,7 @@ public class AssetManager : Node
 		// It's not. Let's add it!
 		else
 		{
+			GD.Print("[INF] Adding " + TexName + " to TextureList");
 			TextureList.Add(TexName, new Dictionary<String, String>()
 			{
 				{"texture", "res://assets/textures/" + TexName + ".png"},

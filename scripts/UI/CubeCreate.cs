@@ -41,6 +41,9 @@ public class CubeCreate : WindowDialog
 			String Name;
 			AssetManager.ActiveTexture.TryGetValue("name", out Name);
 			TexName.Text = Name;
+
+			AssetManager.ActiveTexture.TryGetValue("texture", out Name);
+			TexImg.Texture = (Texture)GD.Load(Name);
 		}
 	}
 

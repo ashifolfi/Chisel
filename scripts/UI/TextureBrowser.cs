@@ -96,11 +96,15 @@ public class TextureBrowser : WindowDialog
 
     private void _on_Accept_pressed()
     {
-        // Extremely convoluted method of pulling a node C# is happy with
-        // really wish this language allowed variable assumptions.
-        String ButtonPath;
-        ButtonPath = GetPathTo(TexButton.GetPressedButton());
-        AssetManager.ActiveTexture = GetNode<TextureRadio>(ButtonPath).HasTexture;
-        Visible = false;
+        // Check if the pressed button is valid first
+        if (TexButton.GetPressedButton() != null)
+        {
+            // Extremely convoluted method of pulling a node C# is happy with
+            // really wish this language allowed variable assumptions.
+            String ButtonPath;
+            ButtonPath = GetPathTo(TexButton.GetPressedButton());
+            AssetManager.ActiveTexture = GetNode<TextureRadio>(ButtonPath).HasTexture;
+            Visible = false;
+        }
     }
 }
