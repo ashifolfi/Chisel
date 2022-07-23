@@ -5,6 +5,7 @@
 
 	(C) 2022 by K. "Ashifolfi" J.
 */
+using Godot;
 using System;
 
 namespace Chisel
@@ -24,7 +25,7 @@ namespace Chisel
 		// 128x128x128 Source cube brush = 1x1x1 Godot cube mesh
 
 		// Godot to Source map unit conversion
-		public static Godot.Vector3 ToSourceUnit(Godot.Vector3 Vec3)
+		public static Vector3 ToSourceUnit(Vector3 Vec3)
 		{
 			Vec3.x *= 128;
 			Vec3.y *= 128;
@@ -32,7 +33,7 @@ namespace Chisel
 			return Vec3;
 		}
 
-		public static Godot.Vector3 ToGodotUnit(Godot.Vector3 Vec3)
+		public static Vector3 ToGodotUnit(Vector3 Vec3)
 		{
 			Vec3.x /= 128;
 			Vec3.y /= 128;
@@ -41,15 +42,26 @@ namespace Chisel
 		}
 	}
 	
-	public class Debug
+	public class Utilities
 	{
 		// Because C# doesn't have one by default
 		public static void Assert(bool cond, string msg)
 		{
 			if (cond) return;
 
-			Godot.GD.PrintErr(msg);
+			GD.PrintErr(msg);
 			throw new ApplicationException($"[ASSERTFAIL] {msg}");
+		}
+
+		// Used to add C# scripts to nodes and also keep their reference
+		public static Godot.Object SetScriptSafe(Godot.Object obj, String script)
+		{
+			ulong objId = obj.GetInstanceId();
+			// Replaces old C# instance with a new one. Old C# instance is disposed.
+			obj.SetScript(ResourceLoader.Load(script));
+			// Get the new C# instance
+			obj = GD.InstanceFromId(objId);
+			return obj;
 		}
 	}
 

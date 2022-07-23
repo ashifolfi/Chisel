@@ -10,6 +10,7 @@ using Godot;
 using Godot.Collections;
 using System;
 using Chisel;
+using static Chisel.Utilities;
 
 public class MeshManager : Spatial
 {
@@ -22,7 +23,7 @@ public class MeshManager : Spatial
     {
         // Check to make sure we aren't about to destroy something we absolutely
         // should NOT be destroying. Crash if we are to prevent any dangerous things from happening
-        Debug.Assert((Body.GetClass() != "StaticBody"), "Attempted to delete non valid object from map!");
+        Assert((Body.GetClass() == "StaticBody"), "Attempted to delete non valid object from map!");
         if (IsInstanceValid(Body.GetParent()))
         {
             Body.GetParent().QueueFree();
