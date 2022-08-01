@@ -10,6 +10,7 @@ Current features:
 - 3D camera controls restriced to a 3d view
 - Basic UI elements
 - Ability to create a cube at the press of a button
+- Basic VTF Support
 <br>
 <br>
 <h1 align="center"> Note for Contributions </h1>
