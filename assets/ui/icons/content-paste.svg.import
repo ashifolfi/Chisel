@@ -1,0 +1,13 @@
+[remap]
+
+importer="image"
+type="Image"
+path="res://.import/content-paste.svg-5dabb1a369a3fb5d0ed9b5b40db0c929.image"
+
+[deps]
+
+source_file="res://assets/ui/icons/content-paste.svg"
+dest_files=[ "res://.import/content-paste.svg-5dabb1a369a3fb5d0ed9b5b40db0c929.image" ]
+
+[params]
+

@@ -1,0 +1,13 @@
+[remap]
+
+importer="image"
+type="Image"
+path="res://.import/relative-scale.svg-33c942304738dd39a7bfb7c15d4e9bfc.image"
+
+[deps]
+
+source_file="res://assets/ui/icons/relative-scale.svg"
+dest_files=[ "res://.import/relative-scale.svg-33c942304738dd39a7bfb7c15d4e9bfc.image" ]
+
+[params]
+

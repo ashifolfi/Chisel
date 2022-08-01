@@ -1,0 +1,13 @@
+[remap]
+
+importer="image"
+type="Image"
+path="res://.import/lightbulb.svg-07b1c606bf9f2d4ab46029355a7a6c55.image"
+
+[deps]
+
+source_file="res://assets/ui/icons/lightbulb.svg"
+dest_files=[ "res://.import/lightbulb.svg-07b1c606bf9f2d4ab46029355a7a6c55.image" ]
+
+[params]
+

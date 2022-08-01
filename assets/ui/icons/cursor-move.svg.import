@@ -1,0 +1,13 @@
+[remap]
+
+importer="image"
+type="Image"
+path="res://.import/cursor-move.svg-6b46b415224322cbac3ed972c0efb87a.image"
+
+[deps]
+
+source_file="res://assets/ui/icons/cursor-move.svg"
+dest_files=[ "res://.import/cursor-move.svg-6b46b415224322cbac3ed972c0efb87a.image" ]
+
+[params]
+
