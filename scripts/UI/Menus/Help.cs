@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using Chisel;
 
 public class Help : MenuButton
 {
@@ -16,7 +17,7 @@ public class Help : MenuButton
 		switch(ID)
 		{
 			case 0:
-				GetNode<WindowDialog>("/root/UI/About").Popup_();
+				GetNode<WindowDialog>(Globals.RootPath + "Editor/About").Popup_();
 				break;
 		}
 	}
