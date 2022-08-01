@@ -18,9 +18,9 @@ public class View : MenuButton
 		{
 			case 0:
 				Panel View3D = GetNode<View3D>("/root/UI/Main/ToolsView/View3D");
-				Panel Top2D = GetNode<View3D>("/root/UI/Main/ToolsView/2DTop");
-				Panel Side2D = GetNode<View3D>("/root/UI/Main/ToolsView/2DSide");
-				Panel Front2D = GetNode<View3D>("/root/UI/Main/ToolsView/2DFront");
+				Panel Top2D = GetNode<Panel>("/root/UI/Main/ToolsView/2DTop");
+				Panel Side2D = GetNode<Panel>("/root/UI/Main/ToolsView/2DSide");
+				Panel Front2D = GetNode<Panel>("/root/UI/Main/ToolsView/2DFront");
 				if (Globals.Enable2DView == true)
 				{
 					View3D.Visible = true;

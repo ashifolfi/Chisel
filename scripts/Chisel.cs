@@ -11,7 +11,7 @@ using System;
 namespace Chisel
 {
 	// Global variables
-	public class Globals
+	public static class Globals
 	{
 		public static Boolean In3DView = true;
 		public static Boolean Enable2DView = false;
@@ -62,6 +62,14 @@ namespace Chisel
 			// Get the new C# instance
 			obj = GD.InstanceFromId(objId);
 			return obj;
+		}
+	}
+
+	public static class Config
+	{
+		public static void LoadConfig()
+		{
+			
 		}
 	}
 

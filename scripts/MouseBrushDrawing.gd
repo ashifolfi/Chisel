@@ -1,7 +1,4 @@
-[gd_scene load_steps=8 format=2]
-
-[sub_resource type="GDScript" id=1]
-script/source = "extends Spatial
+extends Spatial
 
 onready var posmark1 = $cube1
 onready var posmark2 = $cube2
@@ -53,51 +50,3 @@ func create_mesh_here():
 	
 	mesh.set_mesh(cube)
 	add_child(mesh)
-"
-
-[sub_resource type="BoxShape" id=3]
-extents = Vector3( 1, 0.0122968, 1 )
-
-[sub_resource type="PlaneMesh" id=2]
-
-[sub_resource type="SpatialMaterial" id=7]
-flags_transparent = true
-albedo_color = Color( 0, 0, 0, 0.745098 )
-
-[sub_resource type="CubeMesh" id=4]
-
-[sub_resource type="SpatialMaterial" id=5]
-albedo_color = Color( 0, 0.478431, 1, 1 )
-
-[sub_resource type="SpatialMaterial" id=6]
-albedo_color = Color( 1, 0, 0, 1 )
-
-[node name="Spatial" type="Spatial"]
-script = SubResource( 1 )
-
-[node name="StaticBody" type="StaticBody" parent="."]
-transform = Transform( 4.23537, 0, 0, 0, 4.23537, 0, 0, 0, 4.23537, 0, 0, 0 )
-input_capture_on_drag = true
-
-[node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
-shape = SubResource( 3 )
-
-[node name="MeshInstance" type="MeshInstance" parent="StaticBody"]
-mesh = SubResource( 2 )
-skeleton = NodePath("../..")
-material/0 = SubResource( 7 )
-
-[node name="cube1" type="MeshInstance" parent="."]
-transform = Transform( 0.284422, 0, 0, 0, 0.284422, 0, 0, 0, 0.284422, 5.76103, 0, 0 )
-mesh = SubResource( 4 )
-material/0 = SubResource( 5 )
-
-[node name="cube2" type="MeshInstance" parent="."]
-transform = Transform( 0.283967, 0, 0, 0, 0.283967, 0, 0, 0, 0.283967, 4.74568, 0, 0 )
-mesh = SubResource( 4 )
-material/0 = SubResource( 6 )
-
-[node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.896247, 0.443556, 0, -0.443556, 0.896247, 0, 6.86888, 10.3417 )
-
-[connection signal="input_event" from="StaticBody" to="." method="_on_StaticBody_input_event"]

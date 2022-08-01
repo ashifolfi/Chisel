@@ -5,9 +5,13 @@ public class ToolsWindow : Container
 {
 	private MeshManager MeshManager;
 
-	private void _on_CreateCube_pressed()
+	public override void _Ready()
 	{
 		MeshManager = GetNode<MeshManager>("/root/UI/3dEnv/MeshManager");
+	}
+
+	private void _on_CreateCube_pressed()
+	{
 		GetNode<WindowDialog>("/root/UI/CubeCreate").Popup_();
 	}
 

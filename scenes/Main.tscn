@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=44 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://scripts/UI/CubeCreate.cs" type="Script" id=2]
@@ -22,6 +22,8 @@
 [ext_resource path="res://scripts/UI/menubar/File.cs" type="Script" id=20]
 [ext_resource path="res://scripts/StartupInit.cs" type="Script" id=21]
 [ext_resource path="res://scripts/MeshManager.cs" type="Script" id=22]
+[ext_resource path="res://scripts/Gizmo.cs" type="Script" id=23]
+[ext_resource path="res://scripts/Grid3D.cs" type="Script" id=24]
 
 [sub_resource type="StyleBoxFlat" id=14]
 draw_center = false
@@ -89,6 +91,30 @@ uv2_triplanar = true
 [sub_resource type="PlaneMesh" id=13]
 material = SubResource( 12 )
 size = Vector2( 400, 400 )
+
+[sub_resource type="BoxShape" id=24]
+extents = Vector3( 200, 0.0122864, 200 )
+
+[sub_resource type="BoxShape" id=18]
+extents = Vector3( 1.04497, 0.354745, 0.397847 )
+
+[sub_resource type="CubeMesh" id=19]
+
+[sub_resource type="SpatialMaterial" id=20]
+flags_unshaded = true
+albedo_color = Color( 0.933333, 0.203922, 0.317647, 1 )
+
+[sub_resource type="CylinderMesh" id=21]
+top_radius = 0.0
+radial_segments = 8
+
+[sub_resource type="SpatialMaterial" id=22]
+flags_unshaded = true
+albedo_color = Color( 0.156863, 0.54902, 0.956863, 1 )
+
+[sub_resource type="SpatialMaterial" id=23]
+flags_unshaded = true
+albedo_color = Color( 0.505882, 0.803922, 0.0117647, 1 )
 
 [node name="UI" type="Control"]
 anchor_right = 1.0
@@ -433,14 +459,82 @@ transform = Transform( -5.96046e-08, 0, -1, 1, -4.37114e-08, -5.96046e-08, -4.37
 mesh = SubResource( 8 )
 material/0 = SubResource( 11 )
 
-[node name="Grid" type="MeshInstance" parent="3dEnv"]
-mesh = SubResource( 13 )
-material/0 = null
+[node name="StaticBody" type="StaticBody" parent="3dEnv"]
+script = ExtResource( 24 )
 
-[node name="Grid2" type="MeshInstance" parent="3dEnv"]
+[node name="Grid2" type="MeshInstance" parent="3dEnv/StaticBody"]
 transform = Transform( -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0, 0, 0 )
 mesh = SubResource( 13 )
+skeleton = NodePath("../..")
 material/0 = null
+
+[node name="Grid" type="MeshInstance" parent="3dEnv/StaticBody"]
+mesh = SubResource( 13 )
+skeleton = NodePath("../..")
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="3dEnv/StaticBody"]
+shape = SubResource( 24 )
+
+[node name="Gizmo" type="Spatial" parent="3dEnv"]
+transform = Transform( 0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0 )
+script = ExtResource( 23 )
+
+[node name="XArrow" type="StaticBody" parent="3dEnv/Gizmo"]
+
+[node name="CollisionShape" type="CollisionShape" parent="3dEnv/Gizmo/XArrow"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.26693, 0, 0 )
+shape = SubResource( 18 )
+
+[node name="MeshInstance" type="MeshInstance" parent="3dEnv/Gizmo/XArrow"]
+transform = Transform( -4.37114e-09, 0, 0.777074, 0, 0.1, 0, -0.1, 0, -3.3967e-08, 2, 0, 0 )
+mesh = SubResource( 19 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 20 )
+
+[node name="MeshInstance2" type="MeshInstance" parent="3dEnv/Gizmo/XArrow"]
+transform = Transform( -1.31134e-08, 0.3, -1.31134e-08, 0, -1.31134e-08, -0.3, -0.3, -1.31134e-08, 5.73206e-16, 3, 0, 0 )
+mesh = SubResource( 21 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 20 )
+
+[node name="ZArrow" type="StaticBody" parent="3dEnv/Gizmo"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="3dEnv/Gizmo/ZArrow"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.26693, 0, 0 )
+shape = SubResource( 18 )
+
+[node name="MeshInstance" type="MeshInstance" parent="3dEnv/Gizmo/ZArrow"]
+transform = Transform( -4.37114e-09, 0, 0.777074, 0, 0.1, 0, -0.1, 0, -3.3967e-08, 2, 0, 0 )
+mesh = SubResource( 19 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 22 )
+
+[node name="MeshInstance2" type="MeshInstance" parent="3dEnv/Gizmo/ZArrow"]
+transform = Transform( -1.31134e-08, 0.3, -1.31134e-08, 0, -1.31134e-08, -0.3, -0.3, -1.31134e-08, 5.73206e-16, 3, 0, 0 )
+mesh = SubResource( 21 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 22 )
+
+[node name="YArrow" type="StaticBody" parent="3dEnv/Gizmo"]
+transform = Transform( -4.37114e-08, 0, -1, 1, -4.37114e-08, -4.37114e-08, -4.37114e-08, -1, 1.91069e-15, 0, 0, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="3dEnv/Gizmo/YArrow"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.26693, 0, 0 )
+shape = SubResource( 18 )
+
+[node name="MeshInstance" type="MeshInstance" parent="3dEnv/Gizmo/YArrow"]
+transform = Transform( -4.37114e-09, 0, 0.777074, 0, 0.1, 0, -0.1, 0, -3.3967e-08, 2, 0, 0 )
+mesh = SubResource( 19 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 23 )
+
+[node name="MeshInstance2" type="MeshInstance" parent="3dEnv/Gizmo/YArrow"]
+transform = Transform( -1.31134e-08, 0.3, -1.31134e-08, 0, -1.31134e-08, -0.3, -0.3, -1.31134e-08, 5.73206e-16, 3, 0, 0 )
+mesh = SubResource( 21 )
+skeleton = NodePath("../..")
+material/0 = SubResource( 23 )
 
 [node name="About" type="WindowDialog" parent="."]
 anchor_left = 0.5
@@ -831,6 +925,7 @@ columns = 4
 [connection signal="pressed" from="Main/ToolsView/Tools/Delete" to="Main/ToolsView/Tools" method="_on_Delete_pressed"]
 [connection signal="mouse_entered" from="Main/ToolsView/View3D/ViewportContainer" to="Main/ToolsView/View3D" method="_on_ViewportContainer_mouse_entered"]
 [connection signal="mouse_exited" from="Main/ToolsView/View3D/ViewportContainer" to="Main/ToolsView/View3D" method="_on_ViewportContainer_mouse_exited"]
+[connection signal="input_event" from="3dEnv/StaticBody" to="3dEnv/StaticBody" method="OnStaticBodyInputEvent"]
 [connection signal="pressed" from="About/HBoxContainer/SourceCode" to="About" method="_on_SourceCode_pressed"]
 [connection signal="pressed" from="About/HBoxContainer/Close" to="About" method="_on_Close_pressed"]
 [connection signal="pressed" from="CubeCreate/Create" to="CubeCreate" method="OnCreatePressed"]

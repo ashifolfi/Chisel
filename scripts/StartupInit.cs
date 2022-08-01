@@ -19,11 +19,13 @@ public class StartupInit : Control
 	{
 		GD.Print("[INF] Initialization Begin");
 		
+		GD.Print("[INF] Building Root Views");
+		
 		GD.Print("[INF] Tying AssetManager+FileManager to Variables");
 		AssetManager = GetNode<Node>("/root/UI/AssetManager");
 		FileManager = GetNode<Node>("/root/UI/FileManager");
 		GD.Print("[INF] Done!");
 		
-		GD.Print("[INF] INitialization Complete");
+		GD.Print("[INF] Initialization Complete");
 	}
 }
