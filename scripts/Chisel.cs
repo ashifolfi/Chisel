@@ -9,6 +9,7 @@ using Godot;
 using System;
 using Chisel.UI;
 using System.Text.Json;
+using VTFLibWrapper;
 
 namespace Chisel
 {
@@ -92,4 +93,23 @@ namespace Chisel
 		}
 	}
 
+	public class Converts
+	{
+		public static Image.Format FromVTFFormat(VTFImageFormat Format)
+		{
+			switch (Format)
+			{
+				case VTFImageFormat.IMAGE_FORMAT_DXT1:
+					return Image.Format.Dxt1;
+				case VTFImageFormat.IMAGE_FORMAT_DXT3:
+					return Image.Format.Dxt3;
+				case VTFImageFormat.IMAGE_FORMAT_DXT5:
+					return Image.Format.Dxt5;
+				case VTFImageFormat.IMAGE_FORMAT_RGBA32323232F:
+					return Image.Format.Rgbaf;
+			}
+			// If all else assume Rgb8 (Horrible idea but what else are we going to do?)
+			return Image.Format.Rgb8;
+		}
+	}
 }

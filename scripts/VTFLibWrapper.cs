@@ -1,19 +1,12 @@
 ﻿/*
  * VTFLibWrapper
  *
- * Look ma! Still BSD-2!
- * The solution to VTFLib being GPL and Chisel BSD-2
+ * Handles literally everything relating to VTF Support in Chisel
  *
- * Support is not perfect and a lot of formats are missing support
- * But it works enough that we can implement this to at least have basic
- * Valve Texture File support
- *
- * Special thanks to SCell555#4853 for this wonderful masterpiece!
- * Conversion functions were written by K. "ashifolfi" J.
+ * Made by the amazing SCell555
  */
 using System;
 using System.Runtime.InteropServices;
-using Godot;
 
 namespace VTFLibWrapper
 {
@@ -62,7 +55,7 @@ namespace VTFLibWrapper
         IMAGE_FORMAT_NONE = -1
     };
 
-    public class VTFFile
+    public sealed class VTFFile : IDisposable
     {
         private const string DLL_NAME = "vtflib.dll";
         [DllImport(DLL_NAME, CallingConvention = CallingConvention.ThisCall, EntryPoint = "??0CVTFFile@VTFLib@@QEAA@XZ")]
@@ -71,23 +64,38 @@ namespace VTFLibWrapper
         private static extern void Dtor(IntPtr ptr);
         [DllImport(DLL_NAME, CallingConvention = CallingConvention.ThisCall, EntryPoint = "?Load@CVTFFile@VTFLib@@QEAAEPEBDE@Z")]
         [return: MarshalAs(UnmanagedType.U1)]
-        private static extern bool LoadNat(IntPtr ptr, [MarshalAs(UnmanagedType.LPStr)] string path, [MarshalAs(UnmanagedType.U1)] bool headerOnly);
+        private static extern bool Load(IntPtr ptr, [MarshalAs(UnmanagedType.LPStr)] string path, [MarshalAs(UnmanagedType.U1)] bool headerOnly);
         [DllImport(DLL_NAME, CallingConvention = CallingConvention.ThisCall, EntryPoint = "?Load@CVTFFile@VTFLib@@QEAAEPEBDE@Z")]
         [return: MarshalAs(UnmanagedType.U1)]
-        private static extern bool LoadMemNat(IntPtr ptr, IntPtr data, uint size, [MarshalAs(UnmanagedType.U1)] bool headerOnly);
+        private static extern bool LoadMem(IntPtr ptr, IntPtr data, uint size, [MarshalAs(UnmanagedType.U1)] bool headerOnly);
         [DllImport(DLL_NAME, CallingConvention = CallingConvention.ThisCall, EntryPoint = "?GetData@CVTFFile@VTFLib@@QEBAPEAEIIII@Z")]
-        private static extern IntPtr GetDataNat(IntPtr ptr, uint frame, uint face, uint slice, uint mipmap);
+        private static extern IntPtr GetData(IntPtr ptr, uint frame, uint face, uint slice, uint mipmap);
         [DllImport(DLL_NAME, CallingConvention = CallingConvention.ThisCall, EntryPoint = "?GetFormat@CVTFFile@VTFLib@@QEBA?AW4tagVTFImageFormat@@XZ")]
         [return: MarshalAs(UnmanagedType.I4)]
-        private static extern VTFImageFormat GetFormatNat(IntPtr ptr);
+        private static extern VTFImageFormat GetFormat(IntPtr ptr);
         [DllImport(DLL_NAME, CallingConvention = CallingConvention.ThisCall, EntryPoint = "?GetHeight@CVTFFile@VTFLib@@QEBAIXZ")]
-        private static extern uint GetHeightNat(IntPtr ptr);
+        private static extern uint GetHeight(IntPtr ptr);
         [DllImport(DLL_NAME, CallingConvention = CallingConvention.ThisCall, EntryPoint = "?GetWidth@CVTFFile@VTFLib@@QEBAIXZ")]
-        private static extern uint GetWidthNat(IntPtr ptr);
+        private static extern uint GetWidth(IntPtr ptr);
         [DllImport(DLL_NAME, CallingConvention = CallingConvention.ThisCall, EntryPoint = "?GetDepth@CVTFFile@VTFLib@@QEBAIXZ")]
-        private static extern uint GetDepthNat(IntPtr ptr);
+        private static extern uint GetDepth(IntPtr ptr);
+        [DllImport(DLL_NAME, CallingConvention = CallingConvention.ThisCall, EntryPoint = "?GetFrameCount@CVTFFile@VTFLib@@QEBAIXZ")]
+        private static extern uint GetFrameCount(IntPtr ptr);
+        [DllImport(DLL_NAME, CallingConvention = CallingConvention.ThisCall, EntryPoint = "?GetFaceCount@CVTFFile@VTFLib@@QEBAIXZ")]
+        private static extern uint GetFaceCount(IntPtr ptr);
+        [DllImport(DLL_NAME, CallingConvention = CallingConvention.ThisCall, EntryPoint = "?GetHasImage@CVTFFile@VTFLib@@QEBAEXZ")]
+        [return: MarshalAs (UnmanagedType.U1)]
+        private static extern bool GetHasImage(IntPtr ptr);
+        [DllImport(DLL_NAME, CallingConvention = CallingConvention.ThisCall, EntryPoint = "?IsLoaded@CVTFFile@VTFLib@@QEBAEXZ")]
+        [return: MarshalAs (UnmanagedType.U1)]
+        private static extern bool IsLoaded(IntPtr ptr);
         [DllImport(DLL_NAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "?ComputeMipmapSize@CVTFFile@VTFLib@@SAIIIIIW4tagVTFImageFormat@@@Z")]
-        private static extern uint ComputeMipmapSizeNat(uint width, uint height, uint depth, uint mip, VTFImageFormat format);
+        private static extern uint ComputeMipmapSize(uint width, uint height, uint depth, uint mip, [MarshalAs(UnmanagedType.I4)] VTFImageFormat format);
+        [DllImport(DLL_NAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "?ConvertToRGBA8888@CVTFFile@VTFLib@@SAEPEAE0IIW4tagVTFImageFormat@@@Z")]
+        [return : MarshalAs (UnmanagedType.U1)]
+        private static extern bool ConvertToRGBA8888(IntPtr source, IntPtr dest, uint width, uint height, [MarshalAs(UnmanagedType.I4)] VTFImageFormat format);
+        [DllImport(DLL_NAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "?ComputeMipmapDimensions@CVTFFile@VTFLib@@SAXIIIIAEAI00@Z")]
+        private static extern void ComputeMipmapDimensions(uint width, uint height, uint depth, uint mipLevel, ref uint mipWidth, ref uint mipHeight, ref uint mipDepth);
 
         private readonly IntPtr _instance;
 
@@ -97,73 +105,90 @@ namespace VTFLibWrapper
             Ctor(_instance);
         }
 
-        ~VTFFile()
+        public void Dispose()
         {
             Dtor(_instance);
             Marshal.FreeHGlobal(_instance);
+            GC.SuppressFinalize(this);
         }
 
-        public bool Load(string path, bool headerOnly)
+        public bool Load(string path, bool headerOnly = false)
         {
-            return LoadNat(_instance, path, headerOnly);
+            return Load(_instance, path, headerOnly);
         }
 
-        public bool Load(byte[] data, bool headerOnly)
+        public bool Load(byte[] data, bool headerOnly = false)
         {
             var mem = Marshal.AllocHGlobal(data.Length);
             Marshal.Copy(data, 0, mem, data.Length);
-            var res = LoadMemNat(_instance, mem, (uint)data.Length, headerOnly);
+            var res = LoadMem(_instance, mem, (uint)data.Length, headerOnly);
             Marshal.FreeHGlobal(mem);
             return res;
         }
 
         public VTFImageFormat GetFormat()
         {
-            return GetFormatNat(_instance);
+            return GetFormat(_instance);
         }
 
         public uint GetHeight()
         {
-            return GetHeightNat(_instance);
+            return GetHeight(_instance);
         }
 
         public uint GetWidth()
         {
-            return GetWidthNat(_instance);
+            return GetWidth(_instance);
         }
 
         public uint GetDepth()
         {
-            return GetDepthNat(_instance);
+            return GetDepth(_instance);
         }
 
-        public byte[] GetData(uint frame, uint face, uint slice, uint mipmap)
+        public uint GetFrameCount()
         {
-            var size = ComputeMipmapSizeNat(GetWidth(), GetHeight(), GetDepth(), mipmap, GetFormat());
-            var data = GetDataNat(_instance, frame, face, slice, mipmap);
+            return GetFrameCount(_instance);
+        }
+
+        public uint GetFaceCount()
+        {
+            return GetFaceCount(_instance);
+        }
+
+        public bool GetHasImage()
+        {
+            return GetHasImage(_instance);
+        }
+
+        public bool IsLoaded()
+        {
+            return IsLoaded(_instance);
+        }
+
+        public byte[] GetData(uint frame = 0, uint face = 0, uint slice = 0, uint mipmap = 0)
+        {
+            var size = ComputeMipmapSize(GetWidth(), GetHeight(), GetDepth(), mipmap, GetFormat());
+            var data = GetData(_instance, frame, face, slice, mipmap);
             var res = new byte[size];
             Marshal.Copy(data, res, 0, (int)size);
             return res;
         }
-    }
 
-    public class Converts
-    {
-        public static Image.Format FromVTFFormat(VTFImageFormat Format)
+        public byte[] GetDataRGBA8888(uint frame = 0, uint face = 0, uint slice = 0, uint mipmap = 0)
         {
-            switch (Format)
-            {
-                case VTFImageFormat.IMAGE_FORMAT_DXT1:
-                    return Image.Format.Dxt1;
-                case VTFImageFormat.IMAGE_FORMAT_DXT3:
-                    return Image.Format.Dxt3;
-                case VTFImageFormat.IMAGE_FORMAT_DXT5:
-                    return Image.Format.Dxt5;
-                case VTFImageFormat.IMAGE_FORMAT_RGBA32323232F:
-                    return Image.Format.Rgbaf;
-            }
-            // If all else assume Rgb8 (Horrible idea but what else are we going to do?)
-            return Image.Format.Rgb8;
+            var size = (int)ComputeMipmapSize(GetWidth(), GetHeight(), 1, mipmap, GetFormat());
+            var rgbaSizeSingle = (int)ComputeMipmapSize(GetWidth(), GetHeight(), 1, mipmap, VTFImageFormat.IMAGE_FORMAT_RGBA8888);
+            var rgbaSize = ComputeMipmapSize(GetWidth(), GetHeight(), GetDepth(), mipmap, VTFImageFormat.IMAGE_FORMAT_RGBA8888);
+            var data = GetData(_instance, frame, face, slice, mipmap);
+            var rgbaData = Marshal.AllocHGlobal((int)rgbaSize);
+            uint mipWidth = 0, mipHeight = 0, mipDepth = 0;
+            ComputeMipmapDimensions(GetWidth(), GetHeight(), 1, mipmap, ref mipWidth, ref mipHeight, ref mipDepth);
+            for (int i = 0, c = (int)GetDepth(); i < c; i++)
+                ConvertToRGBA8888(IntPtr.Add(data, size * i), IntPtr.Add(rgbaData, rgbaSizeSingle * i), mipWidth, mipHeight, GetFormat());
+            var res = new byte[rgbaSize];
+            Marshal.Copy(rgbaData, res, 0, (int)rgbaSize);
+            return res;
         }
     }
 }
