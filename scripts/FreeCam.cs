@@ -65,10 +65,10 @@ public class FreeCam : Camera
 							Globals.CameraOn = false;
 						}
 						break;
-					case ButtonList.WheelUp: // Increases Max Velocity (TODO)
+					case ButtonList.WheelUp: // Increases Max Velocity 
 						_VelMultiplier = Clamp(_VelMultiplier * 1.1F, 0.2F, 20F);
 						break;
-					case ButtonList.WheelDown: // Decreases Max Velocity (TODO)
+					case ButtonList.WheelDown: // Decreases Max Velocity
 						_VelMultiplier = Clamp(_VelMultiplier / 1.1F, 0.2F, 20F);
 						break;
 				}
