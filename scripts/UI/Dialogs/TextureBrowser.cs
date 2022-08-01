@@ -74,6 +74,7 @@ public class TextureBrowser : WindowDialog
 			Dictionary<String, ImageTexture> TexInfo;
 			AssetManager.TextureList.TryGetValue(Tex, out TexInfo);
 			TexRadio.HasTexture = TexInfo;
+			TexRadio.TextureName = Tex;
 			// Finally. Add it all to the grid
 			TexRadio.AddChild(TexItem);
 			TextureGrid.AddChild(TexRadio);
@@ -102,6 +103,8 @@ public class TextureBrowser : WindowDialog
             String ButtonPath;
             ButtonPath = GetPathTo(TexButton.GetPressedButton());
             AssetManager.ActiveTexture = GetNode<TextureRadio>(ButtonPath).HasTexture;
+            AssetManager.ActiveTextureName = GetNode<TextureRadio>(ButtonPath).TextureName;
+            
             Visible = false;
         }
     }
