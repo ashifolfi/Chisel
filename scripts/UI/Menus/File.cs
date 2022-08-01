@@ -20,7 +20,7 @@ public class File : MenuButton
 		{
 			// New Map
 			case 0:
-				GetNode<Panel>("/root/UI/Main/ToolsView/View3D").Visible = true;
+				GetNode<Panel>(Globals.RootPath + "Editor/Main/ToolsView/View3D").Visible = true;
 				break;
 			// New Map from Template
 			case 1:

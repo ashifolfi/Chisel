@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=2]
+[gd_scene load_steps=44 format=2]
 
 [ext_resource path="res://scripts/UI/Menus/File.cs" type="Script" id=1]
 [ext_resource path="res://scripts/Utilities/AssetManager.cs" type="Script" id=2]
@@ -6,7 +6,6 @@
 [ext_resource path="res://scripts/Utilities/MeshManager.cs" type="Script" id=4]
 [ext_resource path="res://assets/ui/button_groups/Tools.tres" type="ButtonGroup" id=5]
 [ext_resource path="res://assets/environments/3d_unshaded.tres" type="Environment" id=6]
-[ext_resource path="res://assets/textures/floor.png" type="Texture" id=7]
 [ext_resource path="res://scripts/UI/Menus/Help.cs" type="Script" id=8]
 [ext_resource path="res://scripts/UI/Dialogs/TextureBrowser.cs" type="Script" id=9]
 [ext_resource path="res://scripts/UI/Dialogs/About.cs" type="Script" id=10]
@@ -273,7 +272,7 @@ mouse_filter = 1
 [node name="View3D" type="Panel" parent="Main/ToolsView"]
 margin_left = 110.0
 margin_top = 7.0
-margin_right = 1359.0
+margin_right = 1141.0
 margin_bottom = 716.0
 rect_pivot_offset = Vector2( -628, 502 )
 mouse_filter = 1
@@ -287,7 +286,7 @@ stretch = true
 script = ExtResource( 13 )
 
 [node name="Viewport" type="Viewport" parent="Main/ToolsView/View3D/ViewportContainer"]
-size = Vector2( 1249, 709 )
+size = Vector2( 1031, 709 )
 handle_input_locally = false
 render_target_update_mode = 3
 physics_object_picking = true
@@ -399,6 +398,13 @@ text = "2D Side"
 [node name="ToolsDocker" type="PanelContainer" parent="Main/ToolsView"]
 margin_right = 103.0
 margin_bottom = 720.0
+rect_min_size = Vector2( 103, 720 )
+script = ExtResource( 21 )
+
+[node name="WindowDockerB" type="PanelContainer" parent="Main/ToolsView"]
+margin_left = 1139.0
+margin_right = 1365.0
+margin_bottom = 726.0
 rect_min_size = Vector2( 103, 720 )
 script = ExtResource( 21 )
 
@@ -881,44 +887,6 @@ scroll_horizontal_enabled = false
 [node name="GridContainer" type="GridContainer" parent="TextureBrowser/HSplitContainer/ScrollContainer"]
 columns = 4
 
-[node name="TextureDock" type="WindowDialog" parent="."]
-visible = true
-margin_left = 10.0
-margin_top = 546.0
-margin_right = 278.0
-margin_bottom = 745.0
-window_title = "Material"
-script = ExtResource( 22 )
-
-[node name="Texture" type="Control" parent="TextureDock"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-
-[node name="TextureRect" type="TextureRect" parent="TextureDock/Texture"]
-anchor_top = 0.5
-anchor_bottom = 0.5
-margin_left = 10.0
-margin_top = -84.5
-margin_right = 118.0
-margin_bottom = 23.5
-texture = ExtResource( 7 )
-expand = true
-
-[node name="Browse" type="Button" parent="TextureDock/Texture"]
-margin_left = 137.0
-margin_top = 132.0
-margin_right = 253.0
-margin_bottom = 152.0
-text = "Browse"
-
-[node name="Label" type="Label" parent="TextureDock/Texture"]
-margin_left = 130.0
-margin_top = 27.0
-margin_right = 287.0
-margin_bottom = 58.0
-text = "textures/floor"
-autowrap = true
-
 [node name="ToolsDock" type="WindowDialog" parent="."]
 visible = true
 margin_top = 71.0
@@ -960,6 +928,43 @@ group = ExtResource( 5 )
 text = "Delete"
 clip_text = true
 
+[node name="TextureDock" type="WindowDialog" parent="."]
+visible = true
+margin_left = 1142.0
+margin_top = 546.0
+margin_right = 1358.0
+margin_bottom = 745.0
+window_title = "Material"
+script = ExtResource( 22 )
+
+[node name="Texture" type="Control" parent="TextureDock"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="TextureRect" type="TextureRect" parent="TextureDock/Texture"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 10.0
+margin_top = -84.5
+margin_right = 118.0
+margin_bottom = 23.5
+expand = true
+
+[node name="Browse" type="Button" parent="TextureDock/Texture"]
+margin_left = 91.0
+margin_top = 132.0
+margin_right = 207.0
+margin_bottom = 152.0
+text = "Browse"
+
+[node name="Label" type="Label" parent="TextureDock/Texture"]
+margin_left = 126.0
+margin_top = 27.0
+margin_right = 283.0
+margin_bottom = 58.0
+text = "textures/floor"
+autowrap = true
+
 [connection signal="mouse_entered" from="Main/ToolsView/View3D/ViewportContainer" to="Main/ToolsView/View3D" method="_on_ViewportContainer_mouse_entered"]
 [connection signal="mouse_exited" from="Main/ToolsView/View3D/ViewportContainer" to="Main/ToolsView/View3D" method="_on_ViewportContainer_mouse_exited"]
 [connection signal="input_event" from="3dEnv/StaticBody" to="3dEnv/StaticBody" method="OnStaticBodyInputEvent"]
@@ -969,7 +974,7 @@ clip_text = true
 [connection signal="value_changed" from="TextureBrowser/HSplitContainer/Upper/HSlider" to="TextureBrowser" method="_on_HSlider_value_changed"]
 [connection signal="pressed" from="TextureBrowser/HSplitContainer/Upper/Accept" to="TextureBrowser" method="_on_Accept_pressed"]
 [connection signal="pressed" from="TextureBrowser/HSplitContainer/Upper/Reload" to="TextureBrowser" method="_on_Reload_pressed"]
-[connection signal="pressed" from="TextureDock/Texture/Browse" to="TextureDock" method="OnBrowsePressed"]
 [connection signal="pressed" from="ToolsDock/Tools/CreateCube" to="ToolsDock" method="_on_CreateCube_pressed"]
 [connection signal="pressed" from="ToolsDock/Tools/Select" to="ToolsDock" method="_on_Select_pressed"]
 [connection signal="pressed" from="ToolsDock/Tools/Delete" to="ToolsDock" method="_on_Delete_pressed"]
+[connection signal="pressed" from="TextureDock/Texture/Browse" to="TextureDock" method="OnBrowsePressed"]
