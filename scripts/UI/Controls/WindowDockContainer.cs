@@ -8,6 +8,7 @@ namespace Chisel.UI
         private WindowDockContainer Self;
         public override void _Ready()
         {
+            // TODO: Figure out why we're initializing this script before the RootPanel???
             Globals.RootPanel = GetNode<RootPanel>("/root/UI");
             // Make self contain us
             Self = GetNode<WindowDockContainer>(".");
