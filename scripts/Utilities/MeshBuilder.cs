@@ -38,7 +38,7 @@ public class MeshBuilder : Spatial
         // Setup collision shape used to select the object
         StaticBody SelectBody = new StaticBody();
         // Set script and connection so selection actually works
-        SelectBody = (StaticBody)SetScriptSafe(SelectBody ,"res://scripts/SelectableMesh.cs");
+        SelectBody = (StaticBody)SetScriptSafe(SelectBody ,"res://scripts/3DEnvironment/SelectableMesh.cs");
         SelectBody.Connect("input_event", SelectBody, "_OnSelected");
         // Setup CollisionShape
         CollisionShape ColShape = new CollisionShape();
