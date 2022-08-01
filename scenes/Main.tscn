@@ -8,7 +8,7 @@
 [ext_resource path="res://scripts/UI/Dialogs/About.cs" type="Script" id=6]
 [ext_resource path="res://scripts/FreeCam.cs" type="Script" id=7]
 [ext_resource path="res://assets/ui/mb-bg.png" type="Texture" id=8]
-[ext_resource path="res://scripts/UI/ToolsWindow.cs" type="Script" id=9]
+[ext_resource path="res://scripts/UI/Docks/ToolsDock.cs" type="Script" id=9]
 [ext_resource path="res://scripts/UI/Menus/App.cs" type="Script" id=10]
 [ext_resource path="res://scripts/UI/Menus/View.cs" type="Script" id=11]
 [ext_resource path="res://scripts/MeshBuilder.cs" type="Script" id=12]
@@ -270,40 +270,6 @@ margin_top = 43.0
 margin_right = 1366.0
 margin_bottom = 768.0
 mouse_filter = 1
-
-[node name="Tools" type="VBoxContainer" parent="Main/ToolsView"]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 94.0
-margin_bottom = 726.0
-rect_pivot_offset = Vector2( -835, -91 )
-script = ExtResource( 9 )
-
-[node name="CreateCube" type="Button" parent="Main/ToolsView/Tools"]
-margin_right = 87.0
-margin_bottom = 71.0
-rect_min_size = Vector2( 87, 71 )
-group = ExtResource( 19 )
-text = "Primitive"
-clip_text = true
-
-[node name="Select" type="Button" parent="Main/ToolsView/Tools"]
-margin_top = 75.0
-margin_right = 87.0
-margin_bottom = 146.0
-rect_min_size = Vector2( 87, 71 )
-group = ExtResource( 19 )
-text = "Deselect"
-clip_text = true
-
-[node name="Delete" type="Button" parent="Main/ToolsView/Tools"]
-margin_top = 150.0
-margin_right = 87.0
-margin_bottom = 221.0
-rect_min_size = Vector2( 87, 71 )
-group = ExtResource( 19 )
-text = "Delete"
-clip_text = true
 
 [node name="View3D" type="Panel" parent="Main/ToolsView"]
 margin_left = 110.0
@@ -948,9 +914,48 @@ margin_bottom = 58.0
 text = "textures/floor"
 autowrap = true
 
-[connection signal="pressed" from="Main/ToolsView/Tools/CreateCube" to="Main/ToolsView/Tools" method="_on_CreateCube_pressed"]
-[connection signal="pressed" from="Main/ToolsView/Tools/Select" to="Main/ToolsView/Tools" method="_on_Select_pressed"]
-[connection signal="pressed" from="Main/ToolsView/Tools/Delete" to="Main/ToolsView/Tools" method="_on_Delete_pressed"]
+[node name="ToolsDock" type="WindowDialog" parent="."]
+visible = true
+margin_left = 13.0
+margin_top = 94.0
+margin_right = 115.0
+margin_bottom = 682.0
+window_title = "Tools"
+script = ExtResource( 9 )
+
+[node name="Tools" type="VBoxContainer" parent="ToolsDock"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 94.0
+margin_bottom = 580.0
+rect_pivot_offset = Vector2( -835, -91 )
+
+[node name="CreateCube" type="Button" parent="ToolsDock/Tools"]
+margin_right = 87.0
+margin_bottom = 71.0
+rect_min_size = Vector2( 87, 71 )
+group = ExtResource( 19 )
+text = "Primitive"
+clip_text = true
+
+[node name="Select" type="Button" parent="ToolsDock/Tools"]
+margin_top = 75.0
+margin_right = 87.0
+margin_bottom = 146.0
+rect_min_size = Vector2( 87, 71 )
+group = ExtResource( 19 )
+text = "Deselect"
+clip_text = true
+
+[node name="Delete" type="Button" parent="ToolsDock/Tools"]
+margin_top = 150.0
+margin_right = 87.0
+margin_bottom = 221.0
+rect_min_size = Vector2( 87, 71 )
+group = ExtResource( 19 )
+text = "Delete"
+clip_text = true
+
 [connection signal="mouse_entered" from="Main/ToolsView/View3D/ViewportContainer" to="Main/ToolsView/View3D" method="_on_ViewportContainer_mouse_entered"]
 [connection signal="mouse_exited" from="Main/ToolsView/View3D/ViewportContainer" to="Main/ToolsView/View3D" method="_on_ViewportContainer_mouse_exited"]
 [connection signal="input_event" from="3dEnv/StaticBody" to="3dEnv/StaticBody" method="OnStaticBodyInputEvent"]
@@ -961,3 +966,6 @@ autowrap = true
 [connection signal="pressed" from="TextureBrowser/HSplitContainer/Upper/Accept" to="TextureBrowser" method="_on_Accept_pressed"]
 [connection signal="pressed" from="TextureBrowser/HSplitContainer/Upper/Reload" to="TextureBrowser" method="_on_Reload_pressed"]
 [connection signal="pressed" from="TextureDock/Texture/Browse" to="TextureDock" method="OnBrowsePressed"]
+[connection signal="pressed" from="ToolsDock/Tools/CreateCube" to="ToolsDock" method="_on_CreateCube_pressed"]
+[connection signal="pressed" from="ToolsDock/Tools/Select" to="ToolsDock" method="_on_Select_pressed"]
+[connection signal="pressed" from="ToolsDock/Tools/Delete" to="ToolsDock" method="_on_Delete_pressed"]

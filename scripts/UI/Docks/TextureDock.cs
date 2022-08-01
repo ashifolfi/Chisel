@@ -1,4 +1,12 @@
-﻿using Godot;
+﻿/*
+ * TextureDock
+ *
+ * Serves the same purpose as the material dock in hammer
+ * TODO: Fix issue with textures discoloring once used on a primitive
+ *
+ * (C) 2022 by K. "ashifolfi" J.
+ */
+using Godot;
 
 namespace Chisel.UI
 {

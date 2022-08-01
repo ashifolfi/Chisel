@@ -1,4 +1,14 @@
-﻿using Godot;
+﻿/*
+ * ToolsDock
+ *
+ * Contains the tool buttons
+ *
+ * TODO: Add layout constraints
+ * TODO: Add icons for tools
+ *
+ * (C) 2022 by K. "Ashifolfi" J.
+ */
+using Godot;
 
 namespace Chisel.UI
 {
@@ -11,7 +21,13 @@ namespace Chisel.UI
             base._Ready();
             MeshManager = GetNode<MeshManager>("/root/UI/3dEnv/MeshManager");
         }
-        
+
+        public override void _Process(float delta)
+        {
+            // We never want to be resizable
+            Resizable = false;
+        }
+
         private void _on_CreateCube_pressed()
         {
             GetNode<WindowDialog>("/root/UI/CubeCreate").Popup_();

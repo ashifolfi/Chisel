@@ -2,6 +2,8 @@
 	TextureBrowser
 
 	Used to browse available textures to use on brushes/overlays/decals
+	
+	TODO: Fix issue with textures discoloring once used on a primitive
 
 	(C) 2022 by K. "Ashifolfi" J.
 */

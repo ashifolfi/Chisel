@@ -3,6 +3,8 @@
  *
  * Only supports a vertical layout right now
  *
+ * TODO: Add ability to spawn a dialog docked
+ *
  * (C) 2022 by K. "ashifolfi" J.
  */
 using System;
@@ -15,8 +17,9 @@ namespace Chisel.UI
     {
         private DockableDialog Self;
 
-        private Boolean Docked;
         public WindowDockContainer DockContainer;
+        
+        private Boolean Docked;
         private Boolean Moving;
         private Vector2 PrevPosition;
 
