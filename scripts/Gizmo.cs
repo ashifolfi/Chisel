@@ -19,7 +19,7 @@ public class Gizmo : Spatial
         ZArrow = GetNode<StaticBody>("ZArrow");
 
         // Get the MeshManager
-        MeshManager = GetNode<MeshManager>("/root/UI/3dEnv/MeshManager");
+        MeshManager = GetNode<MeshManager>(Globals.RootPath + "Editor/3dEnv/MeshManager");
 
         // Make ourselves invisible
         Visible = false;

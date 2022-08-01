@@ -5,6 +5,7 @@
 
 using Godot;
 using System;
+using Chisel;
 
 
 public class CubeCreate : WindowDialog
@@ -16,8 +17,8 @@ public class CubeCreate : WindowDialog
 	public override void _Ready()
 	{
 		// Very important nodes we require to create primitives
-		AssetManager = GetNode<AssetManager>("/root/UI/AssetManager");
-		MeshBuilder = GetNode<MeshBuilder>("/root/UI/3dEnv/MeshBuilder");
+		AssetManager = GetNode<AssetManager>(Globals.RootPath + "Editor/UI/AssetManager");
+		MeshBuilder = GetNode<MeshBuilder>(Globals.RootPath + "Editor/3dEnv/MeshBuilder");
 	}
 
 	private void OnCreatePressed()

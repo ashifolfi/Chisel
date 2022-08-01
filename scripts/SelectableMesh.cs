@@ -14,7 +14,7 @@ public class SelectableMesh : StaticBody
 
     public override void _Ready()
     {
-        MeshManager = GetNode<MeshManager>("/root/UI/3dEnv/MeshManager");
+        MeshManager = GetNode<MeshManager>(Globals.RootPath + "Editor/3dEnv/MeshManager");
     }
 
     public override void _Process(float delta)

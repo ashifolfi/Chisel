@@ -9,6 +9,7 @@
 */
 using Godot;
 using System;
+using Chisel;
 
 public class Grid3D : StaticBody
 {
@@ -20,8 +21,8 @@ public class Grid3D : StaticBody
 
     public override void _Ready()
     {
-        MeshBuilder = GetNode<MeshBuilder>("/root/UI/3dEnv/MeshBuilder");
-        AssetManager = GetNode<AssetManager>("/root/UI/AssetManager");
+        MeshBuilder = GetNode<MeshBuilder>(Globals.RootPath + "Editor3dEnv/MeshBuilder");
+        AssetManager = GetNode<AssetManager>(Globals.RootPath + "EditorAssetManager");
     }
 
     public void OnStaticBodyInputEvent(Node camera, InputEvent MouseEvent, Vector3 position, Vector3 normal, int shape_idx)
@@ -111,6 +112,6 @@ public class Grid3D : StaticBody
             TransFinal + (new Vector3(XFinal, YFinal, ZFinal) / 2),
             Texture);
 
-        GetNode<MeshManager>("/root/UI/3dEnv/MeshManager").SelectedMesh = null;
+        GetNode<MeshManager>(Globals.RootPath + "Editor3dEnv/MeshManager").SelectedMesh = null;
     }
 }

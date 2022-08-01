@@ -25,21 +25,25 @@ namespace Chisel.UI
         public override void _Ready()
         {
             GD.Print("[INF] Initialization Begin");
-		
-            GD.Print("[INF] Building Root Views");
-		
-            GD.Print("[INF] Tying AssetManager+FileManager to Variables");
-            AssetManager = GetNode<Node>("/root/UI/AssetManager");
-            FileManager = GetNode<Node>("/root/UI/FileManager");
-            Globals.RootPanel = GetNode<RootPanel>("/root/UI");
             
+            // Set this right here right now before we even touch the main editor scene.
+            Globals.RootPanel = GetNode<RootPanel>("/root/RootPanel");
+            Globals.RootPath = "/root/RootPanel";
+		
+            GD.Print("[INF] Loading main editor components");
+            // Instance the main editor scene. Fixes RootPanel not being inited before
+            // the rest of the editor gets inited
+            
+            
+
+            AssetManager = GetNode<Node>(Globals.RootPath + "Editor/AssetManager");
+            FileManager = GetNode<Node>(Globals.RootPath + "Editor/FileManager");
+
             GD.Print("[INF] Loading config file");
             
             GD.Print("[INF] Resizing to match window size");
             RectSize = OS.WindowSize;
 
-            GD.Print("[INF] Done!");
-		
             GD.Print("[INF] Initialization Complete");
         }
 

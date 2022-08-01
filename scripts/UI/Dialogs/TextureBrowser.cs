@@ -11,7 +11,7 @@
 using Godot;
 using Godot.Collections;
 using System;
-
+using Chisel;
 public class TextureBrowser : WindowDialog
 {
 	public GridContainer TextureGrid;
@@ -23,7 +23,7 @@ public class TextureBrowser : WindowDialog
 	public override void _Ready()
 	{
 		// Tie nodes to variables
-		AssetManager = GetNode<AssetManager>("/root/UI/AssetManager");
+		AssetManager = GetNode<AssetManager>(Globals.RootPath + "Editor/AssetManager");
 		TextureGrid = GetNode<GridContainer>("HSplitContainer/ScrollContainer/GridContainer");
 
 		// Set minimum size and exclusivity

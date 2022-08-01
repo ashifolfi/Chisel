@@ -17,10 +17,10 @@ public class View : MenuButton
 		switch(ID)
 		{
 			case 0:
-				Panel View3D = GetNode<View3D>("/root/UI/Main/ToolsView/View3D");
-				Panel Top2D = GetNode<Panel>("/root/UI/Main/ToolsView/2DTop");
-				Panel Side2D = GetNode<Panel>("/root/UI/Main/ToolsView/2DSide");
-				Panel Front2D = GetNode<Panel>("/root/UI/Main/ToolsView/2DFront");
+				Panel View3D = GetNode<View3D>(Globals.RootPath + "Editor/Main/ToolsView/View3D");
+				Panel Top2D = GetNode<Panel>(Globals.RootPath + "Editor/Main/ToolsView/2DTop");
+				Panel Side2D = GetNode<Panel>(Globals.RootPath + "Editor/Main/ToolsView/2DSide");
+				Panel Front2D = GetNode<Panel>(Globals.RootPath + "Editor/Main/ToolsView/2DFront");
 				if (Globals.Enable2DView == true)
 				{
 					View3D.Visible = true;

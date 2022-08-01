@@ -19,7 +19,7 @@ namespace Chisel.UI
         public override void _Ready()
         {
             base._Ready();
-            MeshManager = GetNode<MeshManager>("/root/UI/3dEnv/MeshManager");
+            MeshManager = GetNode<MeshManager>(Globals.RootPath + "Editor/3dEnv/MeshManager");
         }
 
         public override void _Process(float delta)
@@ -31,7 +31,7 @@ namespace Chisel.UI
 
         private void _on_CreateCube_pressed()
         {
-            GetNode<WindowDialog>("/root/UI/CubeCreate").Popup_();
+            GetNode<WindowDialog>(Globals.RootPath + "Editor/CubeCreate").Popup_();
         }
 
         private void _on_Select_pressed()

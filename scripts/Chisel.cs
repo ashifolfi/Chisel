@@ -20,6 +20,7 @@ namespace Chisel
 		public static Boolean CameraOn = false;
 		public static String ToolsMode = "Nothing";
 		public static RootPanel RootPanel;
+		public static String RootPath;
 	}
 
 	public class Unit

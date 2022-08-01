@@ -19,8 +19,8 @@ namespace Chisel.UI
             base._Ready();
             
             // Bind our elements to variables
-            AssetManager = GetNode<AssetManager>("/root/UI/AssetManager");
-            TextureBrowser = GetNode<TextureBrowser>("/root/UI/TextureBrowser");
+            AssetManager = GetNode<AssetManager>(Globals.RootPath + "Editor/AssetManager");
+            TextureBrowser = GetNode<TextureBrowser>(Globals.RootPath + "Editor/TextureBrowser");
         }
         
         public override void _Process(float delta)
