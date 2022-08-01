@@ -38,9 +38,9 @@ public class CubeCreate : WindowDialog
 		GD.Print(Pos);
 
 		// Grab our active texture
-		String name;
+		ImageTexture name;
 		AssetManager.ActiveTexture.TryGetValue("texture", out name);
-		Texture Texture = (Texture)GD.Load(name);
+		Texture Texture = name;
 
 		// Call the MeshBuilder to create our cube with the provided information
 		MeshBuilder.CreateCube(Size, Pos, Texture);

@@ -13,5 +13,5 @@ using System;
 public class TextureRadio : CheckButton
 {
     [Export]
-    public Dictionary<String, String> HasTexture;
+    public Dictionary<String, ImageTexture> HasTexture;
 }

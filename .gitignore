@@ -12,3 +12,12 @@ data_*/
 
 # Rider specific ignores
 .idea/
+
+# DO NOT TRANSFER THE TESTING VTF FILES
+# THEY ARE FROM A RETAIL VALVE GAME
+/assets/textures/dev_measuregeneric01.vtf
+/assets/textures/dev_measuregeneric01b.vtf
+/assets/textures/dev_measurewall01a.vtf
+/assets/textures/dev_measurewall01b.vtf
+/assets/textures/dev_measurewall01c.vtf
+/assets/textures/dev_measurewall01d.vtf

@@ -29,6 +29,7 @@ namespace Chisel.UI
             // Set this right here right now before we even touch the main editor scene.
             Globals.RootPanel = GetNode<RootPanel>("/root/RootPanel");
             Globals.RootPath = "/root/RootPanel/";
+            Globals.ExeDir = OS.GetExecutablePath().GetBaseDir();
 		
             GD.Print("[INF] Loading main editor components");
             // Instance the main editor scene. Fixes RootPanel not being inited before

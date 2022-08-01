@@ -104,9 +104,9 @@ public class Grid3D : StaticBody
             TransFinal.z = PosMark1.Translation.z;
         }
         
-        String name;
+        ImageTexture name;
         AssetManager.ActiveTexture.TryGetValue("texture", out name);
-        Texture Texture = (Texture)GD.Load(name);
+        Texture Texture = name;
         
         MeshBuilder.CreateCube(new Vector3(XFinal, 1, ZFinal),
             TransFinal + (new Vector3(XFinal, YFinal, ZFinal) / 2),

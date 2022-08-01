@@ -39,13 +39,11 @@ namespace Chisel.UI
         {
             if (AssetManager.ActiveTexture.Count > 0)
             {
-                // This went from one line to 3
-                string name;
-                AssetManager.ActiveTexture.TryGetValue("name", out name);
-                TexName.Text = name;
+                TexName.Text = AssetManager.ActiveTextureName;
 
-                AssetManager.ActiveTexture.TryGetValue("texture", out name);
-                TexImg.Texture = (Texture)GD.Load(name);
+                ImageTexture Tex;
+                AssetManager.ActiveTexture.TryGetValue("texture", out Tex);
+                TexImg.Texture = Tex;
             }
         }
         

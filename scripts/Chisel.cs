@@ -21,6 +21,7 @@ namespace Chisel
 		public static String ToolsMode = "Nothing";
 		public static RootPanel RootPanel;
 		public static String RootPath;
+		public static String ExeDir;
 	}
 
 	public class Unit

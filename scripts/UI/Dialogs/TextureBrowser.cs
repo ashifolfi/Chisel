@@ -57,23 +57,21 @@ public class TextureBrowser : WindowDialog
 			// Create TextureRect
 			TextureRect TexRec = new TextureRect();
 			TexRec.Expand = true;
-			String TexPath;
-			AssetManager.TextureList[Tex].TryGetValue("texture", out TexPath);
-            TexRec.RectMinSize = new Vector2(128, 128);
-			TexRec.Texture = (StreamTexture)GD.Load(TexPath);
+			TexRec.RectMinSize = new Vector2(128, 128);
+			ImageTexture Texture;
+            AssetManager.TextureList[Tex].TryGetValue("texture", out Texture);
+            TexRec.Texture = Texture;
 			TexItem.AddChild(TexRec);
 			// Create Name Label
 			Label TexName = new Label();
 			TexName.ClipText = true;
-			String Name;
-			AssetManager.TextureList[Tex].TryGetValue("name", out Name);
-			TexName.Text = Name;
+			TexName.Text = Tex;
 			TexItem.AddChild(TexName);
 			// Define button used for selection
 			TextureRadio TexRadio = new TextureRadio();
 			TexRadio.RectMinSize = new Vector2(128,154);
 			TexRadio.Group = TexButton;
-			Dictionary<String, String> TexInfo;
+			Dictionary<String, ImageTexture> TexInfo;
 			AssetManager.TextureList.TryGetValue(Tex, out TexInfo);
 			TexRadio.HasTexture = TexInfo;
 			// Finally. Add it all to the grid
