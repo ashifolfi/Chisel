@@ -17,7 +17,7 @@ public class CubeCreate : WindowDialog
 	public override void _Ready()
 	{
 		// Very important nodes we require to create primitives
-		AssetManager = GetNode<AssetManager>(Globals.RootPath + "Editor/UI/AssetManager");
+		AssetManager = GetNode<AssetManager>(Globals.RootPath + "Editor/AssetManager");
 		MeshBuilder = GetNode<MeshBuilder>(Globals.RootPath + "Editor/3dEnv/MeshBuilder");
 	}
 

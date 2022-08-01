@@ -28,13 +28,13 @@ namespace Chisel.UI
             
             // Set this right here right now before we even touch the main editor scene.
             Globals.RootPanel = GetNode<RootPanel>("/root/RootPanel");
-            Globals.RootPath = "/root/RootPanel";
+            Globals.RootPath = "/root/RootPanel/";
 		
             GD.Print("[INF] Loading main editor components");
             // Instance the main editor scene. Fixes RootPanel not being inited before
             // the rest of the editor gets inited
-            
-            
+            PackedScene Editor = (PackedScene)GD.Load("res://scenes/Editor.tscn");
+            AddChild(Editor.Instance());
 
             AssetManager = GetNode<Node>(Globals.RootPath + "Editor/AssetManager");
             FileManager = GetNode<Node>(Globals.RootPath + "Editor/FileManager");

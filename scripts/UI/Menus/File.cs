@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using Chisel;
 
 public class File : MenuButton
 {
@@ -8,7 +9,7 @@ public class File : MenuButton
 
 	public override void _Ready()
 	{
-		FileManager = GetNode<FileManager>("/root/UI/FileManager");
+		FileManager = GetNode<FileManager>(Globals.RootPath + "Editor/FileManager");
 		Popup = GetPopup();
 		Popup.Connect("id_pressed", GetNode("."), "_OnIDPressed");
 	}
