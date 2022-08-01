@@ -7,14 +7,14 @@
  */
 using System;
 using Godot;
+using Chisel;
 
 namespace Chisel.UI
 {
     public class DockableDialog : WindowDialog
     {
         private DockableDialog Self;
-        private RootPanel Root;
-        
+
         private Boolean Docked;
         public WindowDockContainer DockContainer;
         private Boolean Moving;
@@ -23,7 +23,6 @@ namespace Chisel.UI
         public override void _Ready()
         {
             Self = GetNode<DockableDialog>(".");
-            Root = GetNode<RootPanel>("/root/UI");
 
             Visible = true;
         }
@@ -51,7 +50,7 @@ namespace Chisel.UI
             // Process moving over a dock container and dock accordingly
           
             // Iterate through every dock container and compare positions
-            foreach (WindowDockContainer Dock in Root.DockContainers.ToArray())
+            foreach (WindowDockContainer Dock in Globals.RootPanel.DockContainers.ToArray())
             {
                 // Position checking
                 Vector2 FScale = Dock.RectSize + Dock.RectPosition;
