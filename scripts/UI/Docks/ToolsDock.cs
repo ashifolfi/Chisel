@@ -24,6 +24,7 @@ namespace Chisel.UI
 
         public override void _Process(float delta)
         {
+            base._Process(delta);
             // We never want to be resizable
             Resizable = false;
         }

@@ -2,6 +2,8 @@
     Mouse Brush Drawing
 
     Used with the brush drawing tool
+    
+    TODO: Fix brushes being selected on creation
 
     (C) 2022 by K. "Ashifolfi" J.
 */
@@ -14,10 +16,12 @@ public class Grid3D : StaticBody
     private Spatial PosMark1 = new Spatial();
     private Spatial PosMark2 = new Spatial();
     private MeshBuilder MeshBuilder;
+    private AssetManager AssetManager;
 
     public override void _Ready()
     {
         MeshBuilder = GetNode<MeshBuilder>("/root/UI/3dEnv/MeshBuilder");
+        AssetManager = GetNode<AssetManager>("/root/UI/AssetManager");
     }
 
     public void OnStaticBodyInputEvent(Node camera, InputEvent MouseEvent, Vector3 position, Vector3 normal, int shape_idx)
@@ -99,9 +103,13 @@ public class Grid3D : StaticBody
             TransFinal.z = PosMark1.Translation.z;
         }
         
+        String name;
+        AssetManager.ActiveTexture.TryGetValue("texture", out name);
+        Texture Texture = (Texture)GD.Load(name);
+        
         MeshBuilder.CreateCube(new Vector3(XFinal, 1, ZFinal),
             TransFinal + (new Vector3(XFinal, YFinal, ZFinal) / 2),
-            GD.Load<Texture>("res://assets/textures/wall.png"));
+            Texture);
 
         GetNode<MeshManager>("/root/UI/3dEnv/MeshManager").SelectedMesh = null;
     }

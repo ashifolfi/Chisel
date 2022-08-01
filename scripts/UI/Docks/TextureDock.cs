@@ -25,6 +25,7 @@ namespace Chisel.UI
         
         public override void _Process(float delta)
         {
+            base._Process(delta);
             // Simple shortcuts
             Label TexName = GetNode<Label>("Texture/Label");
             TextureRect TexImg = GetNode<TextureRect>("Texture/TextureRect");
