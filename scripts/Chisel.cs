@@ -7,6 +7,7 @@
 */
 using Godot;
 using System;
+using Chisel.UI;
 
 namespace Chisel
 {
@@ -17,6 +18,7 @@ namespace Chisel
 		public static Boolean Enable2DView = false;
 		public static Boolean CameraOn = false;
 		public static String ToolsMode = "Nothing";
+		public static RootPanel RootPanel;
 	}
 
 	public class Unit
