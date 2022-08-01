@@ -18,8 +18,8 @@ namespace Chisel.UI
     {
         public List<WindowDockContainer> DockContainers = new List<WindowDockContainer>();
 
-        private Node AssetManager;
-        private Node FileManager;
+        private AssetManager AssetManager;
+        private FileManager FileManager;
         
         // On ready resize the container to fit the current window size
         public override void _Ready()
@@ -37,8 +37,12 @@ namespace Chisel.UI
             PackedScene Editor = (PackedScene)GD.Load("res://scenes/Editor.tscn");
             AddChild(Editor.Instance());
 
-            AssetManager = GetNode<Node>(Globals.RootPath + "Editor/AssetManager");
-            FileManager = GetNode<Node>(Globals.RootPath + "Editor/FileManager");
+            AssetManager = GetNode<AssetManager>(Globals.RootPath + "Editor/AssetManager");
+            FileManager = GetNode<FileManager>(Globals.RootPath + "Editor/FileManager");
+            
+            GD.Print("[INF] Loading game files");
+            // TODO: Implement game configurations and a launcher
+            FileManager.LoadGameTextures("Chisel");
 
             GD.Print("[INF] Loading config file");
             

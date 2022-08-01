@@ -8,13 +8,18 @@
 */
 using Godot;
 using System;
+using System.Collections.Generic;
+using Chisel;
 
 public class FileManager : Node
 {
 	FileDialog FileDialog = new FileDialog();
+	private AssetManager AssetManager;
 
 	public override void _Ready()
 	{
+		AssetManager = GetNode<AssetManager>(Globals.RootPath + "/Editor/AssetManager");
+		
 		AddChild(FileDialog);
 		FileDialog.PopupExclusive = true;
 		FileDialog.RectSize = new Vector2(839, 487);
@@ -31,9 +36,51 @@ public class FileManager : Node
 		// Setup camera
 	}
 
-	public void DirContents()
+	public List<String> DirContents(String Path)
 	{
-		// Stub
+		List<String> FileList = new List<string>();
+		
+		Directory Dir = new Directory();
+		if (Dir.Open(Path) == Error.Ok)
+		{
+			Dir.ListDirBegin();
+			String FileName = Dir.GetNext();
+			while (FileName != "")
+			{
+				if (Dir.CurrentIsDir())
+				{
+					GD.Print("[FS] Found Directory: " + FileName);
+				}
+				else
+				{
+					GD.Print("[FS] Found File: " + FileName);
+					FileList.Add(FileName);
+				}
+
+				FileName = Dir.GetNext();
+			}
+
+			return FileList;
+		}
+		else
+		{
+			GD.Print("[FS][ERR] Failed to access path");
+		}
+
+		return FileList;
+	}
+	
+	// Routine for texture loading
+	public void LoadGameTextures(String GameDir)
+	{
+		String FullPath = Globals.ExeDir + "/" + GameDir;
+		
+		// Search the materials subdirectory for anything containing .vtf
+		List<String> FileList = DirContents(FullPath + "/materials/");
+		foreach (String File in FileList.ToArray())
+		{
+			AssetManager.LoadTexture(File, GameDir);
+		}
 	}
 
 	// VMF Opening

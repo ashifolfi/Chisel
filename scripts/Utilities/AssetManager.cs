@@ -28,23 +28,7 @@ public class AssetManager : Node
 
 	public override void _Ready()
 	{
-		// TODO: Make a function to dynamically load all textures in a directory
-		LoadTexture("floor.png", "");
-		LoadTexture("wall.png", "");
-		// TODO: Make these Tool textures actually work with their intended purpose
-		LoadTexture("hint.png", "");
-		LoadTexture("nodraw.png", "");
-		LoadTexture("skip.png", "");
-		LoadTexture("trigger.png", "");
-		// VTF Support Testing
-		LoadTexture("dev_measuregeneric01.vtf", "");
-		LoadTexture("dev_measuregeneric01b.vtf", "");
-		LoadTexture("dev_measurewall01a.vtf", "");
-		LoadTexture("dev_measurewall01b.vtf", "");
-		LoadTexture("dev_measurewall01c.vtf", "");
-		LoadTexture("dev_measurewall01d.vtf", "");
-		// Set the active texture to the floor texture
-		SwapActiveTexture("floor");
+		
 	}
 	
 	// New function specifically to handle changing the active texture
@@ -55,7 +39,6 @@ public class AssetManager : Node
 	}
 
 	// Add item to the texture list
-	// TODO: Make textures entirely external with a source engine file structure
 	public void LoadTexture(String FileName, String GameDir)
 	{
 		// Get a version of the TexName that lacks the extension
@@ -65,8 +48,7 @@ public class AssetManager : Node
 		VTFFile VTexFile = new VTFFile();
 		ImageTexture Tex = new ImageTexture();
 		// Make sure the texture actually exists
-		// We won't need this in the end.
-		/*if (!File.FileExists("res://assets/textures/" + FileName))
+		if (!File.FileExists(Globals.ExeDir + "/" + GameDir + "/materials/" + FileName))
 		{
 			// Texture doesn't exist
 			GD.Print("[INF] Texture " + TexName + " does not exist!");
@@ -78,7 +60,7 @@ public class AssetManager : Node
 			}
 		}
 		// Check if it's already in the list
-		else*/ if (TryFindTex(TexName) == true)
+		else if (TryFindTex(TexName) == true)
 		{
 			GD.Print("[INF] " + TexName + " is already loaded - skipping");
 		}
@@ -92,7 +74,7 @@ public class AssetManager : Node
 				// VTF Requires more work to be done
 				// Load the VTFFile
 				// You must place all vtf files in the exe dir under "vtf_test" as res:// does not work with vtflib
-				VTexFile.Load(Globals.ExeDir + "/vtf_test/materials/" + FileName, false);
+				VTexFile.Load(Globals.ExeDir + "/" + GameDir + "/materials/" + FileName, false);
 				// Create a new image from the data given
 				Image Converted = new Image();
 				Converted.CreateFromData(
@@ -100,18 +82,19 @@ public class AssetManager : Node
 					Converts.FromVTFFormat(VTexFile.GetFormat()), VTexFile.GetData(0, 0, 0, 0));
 				// Convert it into a texture
 				Tex.CreateFromImage(Converted);
+				
+				// Add the texture to the list
+				TextureList.Add(TexName, new Dictionary<String, ImageTexture>()
+				{
+					{
+						"texture", Tex
+					}
+				});
 			}
 			else
 			{
-				Tex.Load("res://assets/textures/" + FileName);
+				GD.Print("[INF] Not a VTF. Not loading.");
 			}
-			// Add the texture to the list
-			TextureList.Add(TexName, new Dictionary<String, ImageTexture>()
-			{
-				{
-					"texture", Tex
-				}
-			});
 		}
 	}
 

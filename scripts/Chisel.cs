@@ -80,6 +80,11 @@ namespace Chisel
 		}
 	}
 
+	public static class FS
+	{
+		
+	}
+
 	public class Math
 	{
 		public static float Clamp(float val, float min, float max)
