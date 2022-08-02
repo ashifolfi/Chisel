@@ -10,10 +10,7 @@ namespace Chisel.UI
         {
             // Make self contain us
             Self = GetNode<WindowDockContainer>(".");
-            Globals.RootPanel.DockContainers.Add(Self);
-            
-            // Always clip content to prevent weird oddities
-            //RectClipContent = true;
+            GetNode<EditorMain>("/root/RootNode").DockContainers.Add(Self);
         }
     }
 }

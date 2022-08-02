@@ -1,17 +1,26 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://assets/ui/ui.theme" type="Theme" id=1]
 [ext_resource path="res://scripts/UINew/EditorMain.cs" type="Script" id=2]
+[ext_resource path="res://addons/imgui-godot/ImGuiNode.cs" type="Script" id=3]
+[ext_resource path="res://scripts/UINew/MenuBar.cs" type="Script" id=4]
 
-[node name="RootNode" type="Control"]
+[node name="RootNode" type="Panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
 
-[node name="WindowDialog" type="WindowDialog" parent="."]
-visible = true
-margin_left = 308.0
-margin_top = 136.0
-margin_right = 962.0
-margin_bottom = 616.0
+[node name="ImGuiNode" type="Node2D" parent="."]
+script = ExtResource( 3 )
+
+[node name="EditorMain" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="MenuBar" type="Control" parent="EditorMain"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 4 )
+
+[connection signal="IGLayout" from="ImGuiNode" to="EditorMain/MenuBar" method="_on_ImGuiNode_IGLayout"]

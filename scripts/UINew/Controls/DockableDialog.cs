@@ -32,7 +32,6 @@ namespace Chisel.UI
 
         public void ToWindow()
         {
-            GetCloseButton().Visible = true;
             Resizable = true;
             Docked = false;
             DockContainer = null;
@@ -42,8 +41,7 @@ namespace Chisel.UI
         {
             Resizable = false;
             DockContainer = Container;
-            GetCloseButton().Visible = false;
-            
+
             // Constrain ourselves into the X of the dock
             RectPosition = new Vector2(Container.RectPosition.x, RectPosition.y);
         }
@@ -53,7 +51,8 @@ namespace Chisel.UI
             // Process moving over a dock container and dock accordingly
           
             // Iterate through every dock container and compare positions
-            foreach (WindowDockContainer Dock in Globals.RootPanel.DockContainers.ToArray())
+            // TODO: make this work better
+            foreach (WindowDockContainer Dock in GetNode<EditorMain>("/root/RootNode").DockContainers.ToArray())
             {
                 // Position checking
                 Vector2 FScale = Dock.RectSize + Dock.RectPosition;

@@ -36,7 +36,7 @@ window/size/height=768
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/vmflib/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/imgui-godot/plugin.cfg", "res://addons/vmflib/plugin.cfg" )
 
 [locale]
 

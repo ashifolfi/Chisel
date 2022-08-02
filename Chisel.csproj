@@ -1,12 +1,16 @@
 <Project Sdk="Godot.NET.Sdk/3.3.0">
   <PropertyGroup>
     <TargetFramework>net472</TargetFramework>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="ImGui.NET" Version="1.87.3" />
     <PackageReference Include="System.Text.Json" Version="7.0.0-preview.6.22324.4" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="scripts\2DView" />
+    <Folder Include="scripts\UINew\Dialogs\AssetBrowser" />
+    <Folder Include="scripts\UINew\Docks" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="scripts\NewFile1.txt" />
