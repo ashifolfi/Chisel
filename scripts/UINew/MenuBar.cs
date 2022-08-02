@@ -1,4 +1,5 @@
 ﻿using Chisel.scripts.UINew.Dialogs;
+using Chisel.scripts.UINew.Dialogs.AssetBrowser;
 using Chisel.scripts.UINew.Docks;
 using Godot;
 using ImGuiNET;
@@ -93,8 +94,13 @@ namespace Chisel.scripts.UINew
             if (ImGui.BeginMenu("Docks", true))
             {
                 if (ImGui.MenuItem("Tools")) GetNode<Tools>("../Tools").show = true;
+                if (ImGui.MenuItem("Active Material")) GetNode<ActiveTexture>("../ActiveTexture").show = true;
+                if (ImGui.MenuItem("Tool Properties")) GetNode<ToolProperties>("../ToolProperties").show = true;
+                if (ImGui.MenuItem("Outliner")) GetNode<Outline>("../Outliner").show = true;
                 ImGui.EndMenu();
             }
+            ImGui.Separator();
+            if (ImGui.MenuItem("Asset Browser")) GetNode<AssetBrowser>("../AssetBrowser").show = true;
         }
     }
 }
