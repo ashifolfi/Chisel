@@ -14,6 +14,9 @@ namespace Chisel.scripts.UINew.Dialogs
 
         public override void _Ready()
         {
+            Node ImGuiNode = GetNode<Node>("/root/RootNode/ImGuiNode");
+            ImGuiNode.Connect("IGLayout", GetNode("."), "_on_ImGuiNode_IGLayout");
+            
             Icon = (Texture)GD.Load("res://icon.png");
             iconTextureId = ImGuiGD.BindTexture(Icon);
         }
@@ -27,7 +30,7 @@ namespace Chisel.scripts.UINew.Dialogs
 
             ImGui.Begin("About", ref show,
                 ImGuiWindowFlags.None | ImGuiWindowFlags.NoResize | ImGuiWindowFlags.NoSavedSettings |
-                ImGuiWindowFlags.NoCollapse);
+                ImGuiWindowFlags.NoCollapse | ImGuiWindowFlags.NoDocking);
             // Set the window size
             ImGui.SetWindowSize(new Vector2(333, 337));
             if (posset == false)

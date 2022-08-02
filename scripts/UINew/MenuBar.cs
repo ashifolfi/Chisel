@@ -6,6 +6,11 @@ namespace Chisel.scripts.UINew
 {
     public class MenuBar : Node
     {
+        public override void _Ready()
+        {
+            Node ImGuiNode = GetNode<Node>("/root/RootNode/ImGuiNode");
+            ImGuiNode.Connect("IGLayout", GetNode("."), "_on_ImGuiNode_IGLayout");
+        }
         private void _on_ImGuiNode_IGLayout()
         {
             ImGui.BeginMainMenuBar();
@@ -14,10 +19,14 @@ namespace Chisel.scripts.UINew
             {
                 ImGui.MenuItem("New Map");
                 ImGui.MenuItem("New Map from Template");
+                ImGui.Separator();
                 ImGui.MenuItem("Open Map");
+                ImGui.Separator();
                 ImGui.MenuItem("Save");
                 ImGui.MenuItem("Save As");
+                ImGui.Separator();
                 ImGui.MenuItem("Run Map");
+                ImGui.Separator();
                 ImGui.MenuItem("Close");
                 ImGui.EndMenu();
             }
@@ -58,11 +67,14 @@ namespace Chisel.scripts.UINew
 
             if (ImGui.BeginMenu("Help", true))
             {
-                if (ImGui.MenuItem("About"))
+                ImGui.MenuItem("Chisel Documentation");
+                ImGui.Separator();
+                if (ImGui.MenuItem("About Chisel"))
                 {
-                    GetNode<About>("/root/RootNode/About").show = true;
+                    GetNode<About>("../About").show = true;
                 }
                 ImGui.EndMenu();
+                
             }
 
             ImGui.EndMainMenuBar();

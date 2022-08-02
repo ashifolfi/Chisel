@@ -12,7 +12,7 @@ using Godot;
 
 namespace Chisel.UI
 {
-    public class ToolsDock : DockableDialog
+    public class ToolsDock : Node
     {
         private MeshManager MeshManager;
 
@@ -25,8 +25,7 @@ namespace Chisel.UI
         public override void _Process(float delta)
         {
             base._Process(delta);
-            // We never want to be resizable
-            Resizable = false;
+            
         }
 
         private void _on_CreateCube_pressed()

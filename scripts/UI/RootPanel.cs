@@ -16,7 +16,7 @@ namespace Chisel.UI
 {
     public class RootPanel : Panel
     {
-        public List<WindowDockContainer> DockContainers = new List<WindowDockContainer>();
+        //public List<WindowDockContainer> DockContainers = new List<WindowDockContainer>();
 
         private AssetManager AssetManager;
         private FileManager FileManager;

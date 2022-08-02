@@ -10,7 +10,7 @@ using Godot;
 
 namespace Chisel.UI
 {
-    public class TextureDock : DockableDialog
+    public class TextureDock : Node
     {
         private AssetManager AssetManager;   
         private TextureBrowser TextureBrowser;
