@@ -26,11 +26,11 @@ public class imguiviewporttest : Control
             {
                 InputEvent MouseEvent = (InputEvent)@event.Duplicate();
                 MouseEvent.Set("position", GetGlobalTransform().XformInv((Godot.Vector2)@event.Get("global_position")));
-                GetNode<Viewport>("Viewport").UnhandledInput(MouseEvent);
+                GetNode<Viewport>("ViewportContainer/Viewport").UnhandledInput(MouseEvent);
             }
             else
             {
-                GetNode<Viewport>("Viewport").UnhandledInput(@event);
+                GetNode<Viewport>("ViewportContainer/Viewport").UnhandledInput(@event);
             }
         }
     }
@@ -58,7 +58,7 @@ public class imguiviewporttest : Control
         else
             Globals.In3DView = false;
 
-        Texture Tex = GetNode<Viewport>("Viewport").GetTexture();
+        Texture Tex = GetNode<Viewport>("ViewportContainer/Viewport").GetTexture();
         IntPtr TexId = ImGuiGD.BindTexture(Tex);
         
         ImGui.Image(TexId, new Vector2(Tex.GetWidth(), Tex.GetHeight()));

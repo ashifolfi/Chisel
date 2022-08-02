@@ -11,17 +11,24 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 2 )
 
-[node name="Viewport" type="Viewport" parent="."]
+[node name="ViewportContainer" type="ViewportContainer" parent="."]
+visible = false
+margin_right = 800.0
+margin_bottom = 600.0
+
+[node name="Viewport" type="Viewport" parent="ViewportContainer"]
 size = Vector2( 800, 600 )
 size_override_stretch = true
 handle_input_locally = false
 render_target_v_flip = true
+render_target_update_mode = 3
+physics_object_picking = true
 
-[node name="Camera" type="Camera" parent="Viewport"]
+[node name="Camera" type="Camera" parent="ViewportContainer/Viewport"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.89414 )
 script = ExtResource( 3 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Viewport"]
+[node name="MeshInstance" type="MeshInstance" parent="ViewportContainer/Viewport"]
 transform = Transform( 0.577832, 0, 0, 0, 0.577832, 0, 0, 0, 0.577832, 0, 0, -0.298568 )
 mesh = SubResource( 1 )
 skeleton = NodePath("../Camera")

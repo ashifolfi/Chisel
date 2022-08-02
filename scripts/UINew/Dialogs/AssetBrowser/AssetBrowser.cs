@@ -16,7 +16,7 @@ namespace Chisel.scripts.UINew.Dialogs.AssetBrowser
 {
     public class AssetBrowser : Node
     {
-        public Boolean show = true;
+        public Boolean show = false;
         private AssetManager AssetManager;
 
         public override void _Ready()
