@@ -1,4 +1,14 @@
-﻿using Godot;
+﻿/*
+ * TextureBrowser
+ *
+ * Allows the user to view every texture found inside mounted game content
+ * and change the active texture.
+ *
+ * Part of the AssetBrowser component
+ *
+ * (C) 2022 by K. "ashifolfi" J.
+ */
+using Godot;
 using System;
 using Vector2 = System.Numerics.Vector2;
 using ImGuiNET;

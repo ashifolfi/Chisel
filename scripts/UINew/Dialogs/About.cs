@@ -48,6 +48,12 @@ namespace Chisel.scripts.UINew.Dialogs
             ImGui.Text("");
             ImGui.Text("Powered by ImGui + Godot");
 
+            if (ImGui.Button("Source Code"))
+                OS.ShellOpen("https://www.github.com/ashifolfi/Chisel");
+            ImGui.SameLine();
+            if (ImGui.Button("Close"))
+                show = false;
+
             ImGui.End();
         }
     }

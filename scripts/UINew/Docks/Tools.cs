@@ -25,7 +25,7 @@ namespace Chisel.scripts.UINew.Docks
                 return;
             }
 
-            ImGui.Begin("Tools", ref show, ImGuiWindowFlags.NoCollapse | ImGuiWindowFlags.NoResize);
+            ImGui.Begin("Tools", ref show, ImGuiWindowFlags.NoCollapse | ImGuiWindowFlags.NoResize | ImGuiWindowFlags.AlwaysAutoResize);
 
             ImGui.Separator();
             ImGui.Separator();
