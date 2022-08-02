@@ -22,7 +22,7 @@ _global_script_class_icons={
 
 config/name="Chisel"
 config/description="Open Source, Cross Platform alternative to Valve's Hammer Editor for Source Engine"
-run/main_scene="res://scenes/Main.tscn"
+run/main_scene="res://newUI.tscn"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="chisel-data"
 boot_splash/image="res://icon.png"
@@ -33,6 +33,8 @@ config/icon="res://icon.png"
 
 window/size/width=1366
 window/size/height=768
+window/size/test_width=1280
+window/size/test_height=720
 
 [editor_plugins]
 

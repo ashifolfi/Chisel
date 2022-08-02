@@ -10,7 +10,6 @@
   <ItemGroup>
     <Folder Include="scripts\2DView" />
     <Folder Include="scripts\UINew\Dialogs\AssetBrowser" />
-    <Folder Include="scripts\UINew\Docks" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="scripts\NewFile1.txt" />

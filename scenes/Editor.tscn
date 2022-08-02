@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=2]
+[gd_scene load_steps=43 format=2]
 
 [ext_resource path="res://scripts/UI/Menus/File.cs" type="Script" id=1]
 [ext_resource path="res://scripts/Utilities/AssetManager.cs" type="Script" id=2]
@@ -19,7 +19,6 @@
 [ext_resource path="res://icon.png" type="Texture" id=18]
 [ext_resource path="res://assets/textures/grid.png" type="Texture" id=19]
 [ext_resource path="res://assets/ui/mb-bg.png" type="Texture" id=20]
-[ext_resource path="res://scripts/UI/Controls/WindowDockContainer.cs" type="Script" id=21]
 [ext_resource path="res://scripts/UI/Docks/TextureDock.cs" type="Script" id=22]
 [ext_resource path="res://scripts/3DEnvironment/Grid3D.cs" type="Script" id=23]
 [ext_resource path="res://scripts/UI/Docks/ToolsDock.cs" type="Script" id=24]
@@ -399,14 +398,12 @@ text = "2D Side"
 margin_right = 103.0
 margin_bottom = 720.0
 rect_min_size = Vector2( 103, 720 )
-script = ExtResource( 21 )
 
 [node name="WindowDockerB" type="PanelContainer" parent="Main/ToolsView"]
 margin_left = 1139.0
 margin_right = 1365.0
 margin_bottom = 726.0
 rect_min_size = Vector2( 103, 720 )
-script = ExtResource( 21 )
 
 [node name="3dEnv" type="Spatial" parent="."]
 
@@ -515,6 +512,7 @@ skeleton = NodePath("../..")
 material/0 = SubResource( 23 )
 
 [node name="About" type="WindowDialog" parent="."]
+visible = true
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
