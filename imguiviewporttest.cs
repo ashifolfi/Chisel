@@ -20,18 +20,15 @@ public class imguiviewporttest : Control
 
     public override void _Input(InputEvent @event)
     {
-        if (Globals.In3DView == true)
+        if (@event is InputEventMouse)
         {
-            if (@event is InputEventMouse)
-            {
-                InputEvent MouseEvent = (InputEvent)@event.Duplicate();
-                MouseEvent.Set("position", GetGlobalTransform().XformInv((Godot.Vector2)@event.Get("global_position")));
-                GetNode<Viewport>("ViewportContainer/Viewport").UnhandledInput(MouseEvent);
-            }
-            else
-            {
-                GetNode<Viewport>("ViewportContainer/Viewport").UnhandledInput(@event);
-            }
+            InputEvent MouseEvent = (InputEvent)@event.Duplicate(); 
+            MouseEvent.Set("position", GetGlobalTransform().XformInv((Godot.Vector2)@event.Get("global_position")));
+            GetNode<Viewport>("ViewportContainer/Viewport").UnhandledInput(MouseEvent);
+        }
+        else
+        { 
+            GetNode<Viewport>("ViewportContainer/Viewport").UnhandledInput(@event);
         }
     }
 
@@ -44,9 +41,22 @@ public class imguiviewporttest : Control
 
         ImGui.Begin("Viewport Test", ref show, ImGuiWindowFlags.None);
 
+        InputHandler();
+
+        Texture Tex = GetNode<Viewport>("ViewportContainer/Viewport").GetTexture();
+        IntPtr TexId = ImGuiGD.BindTexture(Tex);
+        
+        ImGui.Image(TexId, new Vector2(Tex.GetWidth(), Tex.GetHeight()));
+        ImGui.SetWindowSize(new Vector2(Tex.GetWidth(), Tex.GetHeight()));
+        ImGui.End();
+    }
+
+    private void InputHandler()
+    {
         if (ImGui.IsMouseDown(ImGuiMouseButton.Right))
         {
             Globals.CameraOn = true;
+            
         }
         else
         {
@@ -57,12 +67,5 @@ public class imguiviewporttest : Control
             Globals.In3DView = true;
         else
             Globals.In3DView = false;
-
-        Texture Tex = GetNode<Viewport>("ViewportContainer/Viewport").GetTexture();
-        IntPtr TexId = ImGuiGD.BindTexture(Tex);
-        
-        ImGui.Image(TexId, new Vector2(Tex.GetWidth(), Tex.GetHeight()));
-        ImGui.SetWindowSize(new Vector2(Tex.GetWidth(), Tex.GetHeight()));
-        ImGui.End();
     }
 }

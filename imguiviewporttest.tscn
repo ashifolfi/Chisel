@@ -12,7 +12,6 @@ anchor_bottom = 1.0
 script = ExtResource( 2 )
 
 [node name="ViewportContainer" type="ViewportContainer" parent="."]
-visible = false
 margin_right = 800.0
 margin_bottom = 600.0
 
