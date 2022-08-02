@@ -1,4 +1,5 @@
 ﻿using Chisel.scripts.UINew.Dialogs;
+using Chisel.scripts.UINew.Docks;
 using Godot;
 using ImGuiNET;
 
@@ -17,17 +18,7 @@ namespace Chisel.scripts.UINew
 
             if (ImGui.BeginMenu("File", true))
             {
-                ImGui.MenuItem("New Map");
-                ImGui.MenuItem("New Map from Template");
-                ImGui.Separator();
-                ImGui.MenuItem("Open Map");
-                ImGui.Separator();
-                ImGui.MenuItem("Save");
-                ImGui.MenuItem("Save As");
-                ImGui.Separator();
-                ImGui.MenuItem("Run Map");
-                ImGui.Separator();
-                ImGui.MenuItem("Close");
+                FileMenu();
                 ImGui.EndMenu();
             }
             
@@ -62,6 +53,7 @@ namespace Chisel.scripts.UINew
 
             if (ImGui.BeginMenu("Window", true))
             {
+                WindowMenu();
                 ImGui.EndMenu();
             }
 
@@ -78,6 +70,31 @@ namespace Chisel.scripts.UINew
             }
 
             ImGui.EndMainMenuBar();
+        }
+
+        private void FileMenu()
+        {
+            ImGui.MenuItem("New Map");
+            ImGui.MenuItem("New Map from Template");
+            ImGui.Separator();
+            ImGui.MenuItem("Open Map");
+            ImGui.Separator();
+            ImGui.MenuItem("Save");
+            ImGui.MenuItem("Save As");
+            ImGui.Separator();
+            ImGui.MenuItem("Run Map");
+            ImGui.Separator();
+            ImGui.MenuItem("Close");
+        }
+        
+        // Contains the contents of the window menu
+        private void WindowMenu()
+        {
+            if (ImGui.BeginMenu("Docks", true))
+            {
+                if (ImGui.MenuItem("Tools")) GetNode<Tools>("../Tools").show = true;
+                ImGui.EndMenu();
+            }
         }
     }
 }
