@@ -17,11 +17,14 @@ namespace Chisel.scripts.UINew.Dialogs.AssetBrowser
     public class AssetBrowser : Node
     {
         public Boolean show = true;
+        private AssetManager AssetManager;
 
         public override void _Ready()
         {
             Node ImGuiNode = GetNode<Node>("/root/RootNode/ImGuiNode");
             ImGuiNode.Connect("IGLayout", GetNode("."), "_on_ImGuiNode_IGLayout");
+            
+            AssetManager = GetNode<AssetManager>("../../AssetManager");
         }
 
         private void _on_ImGuiNode_IGLayout()
@@ -31,7 +34,7 @@ namespace Chisel.scripts.UINew.Dialogs.AssetBrowser
                 return;
             }
 
-            ImGui.Begin("Asset Browser", ref show, ImGuiWindowFlags.None);
+            ImGui.Begin("Asset Browser", ref show, ImGuiWindowFlags.None | ImGuiWindowFlags.NoDocking | ImGuiWindowFlags.NoCollapse);
             ImGui.BeginTabBar("ab_tabs", ImGuiTabBarFlags.None);
 
             // Tab Items
@@ -39,6 +42,7 @@ namespace Chisel.scripts.UINew.Dialogs.AssetBrowser
             Boolean tex_open = true;
             if (ImGui.BeginTabItem("Textures", ref tex_open, ImGuiTabItemFlags.None))
             {
+                TextureBrowser.TextureBrowser_Main(AssetManager);
                 ImGui.EndTabItem();
             }
             // Model Browser

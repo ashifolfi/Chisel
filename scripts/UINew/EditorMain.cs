@@ -39,6 +39,7 @@ public class EditorMain : Node
             GD.Print("[INF] Loading game files");
             // TODO: Implement game configurations and a launcher
             FileManager.LoadGameTextures("Chisel");
+            AssetManager.SwapActiveTexture("dev_measurewall01a");
 
             GD.Print("[INF] Loading config file");
 

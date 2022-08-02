@@ -16,19 +16,19 @@ namespace Chisel.scripts.UINew.Docks
 {
     public class ActiveTexture : Node
     {
-        public Boolean show = false;
-        private Texture Tex;
-        private String TexName;
+        public Boolean show = true;
+        public ImageTexture Tex;
+        public String TexName;
         private IntPtr atexTextureId;
 
-        //private AssetManager AssetManager;
+        private AssetManager AssetManager;
 
         public override void _Ready()
         {
             Node ImGuiNode = GetNode<Node>("/root/RootNode/ImGuiNode");
             ImGuiNode.Connect("IGLayout", GetNode("."), "_on_ImGuiNode_IGLayout");
 
-            GetNode<AssetManager>("/root/RootPanel/AssetManager");
+            AssetManager = GetNode<AssetManager>("../../AssetManager");
         }
 
 
@@ -42,7 +42,18 @@ namespace Chisel.scripts.UINew.Docks
             ImGui.Begin("Active Texture", ref show, ImGuiWindowFlags.NoCollapse);
             
             // Main Texture
+            if (AssetManager.ActiveTexture != null)
+            {
+                AssetManager.ActiveTexture.TryGetValue("texture", out Tex);
+                atexTextureId = ImGuiGD.BindTexture(Tex);
+                TexName = AssetManager.ActiveTextureName;
+
+                ImGui.Image(atexTextureId, new Vector2(128, 128));
+                ImGui.Text(TexName);
+            }
+            ImGui.Button("Browse", new Vector2(100, 20));
             
+            ImGui.End();
         }
     }
 }

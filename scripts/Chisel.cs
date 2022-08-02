@@ -71,7 +71,6 @@ namespace Chisel
 		}
 	}
 
-	// TODO: Add config saving for Window layout, docks, window size, and other settings the user would want to change
 	public static class Config
 	{
 		public static void LoadConfig()

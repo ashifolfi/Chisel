@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://addons/imgui-godot/ImGuiNode.cs" type="Script" id=1]
+[ext_resource path="res://imguiviewporttest.cs" type="Script" id=2]
+[ext_resource path="res://scripts/3DEnvironment/FreeCam.cs" type="Script" id=3]
+
+[sub_resource type="CubeMesh" id=1]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+
+[node name="Viewport" type="Viewport" parent="."]
+size = Vector2( 800, 600 )
+size_override_stretch = true
+handle_input_locally = false
+render_target_v_flip = true
+
+[node name="Camera" type="Camera" parent="Viewport"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.89414 )
+script = ExtResource( 3 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Viewport"]
+transform = Transform( 0.577832, 0, 0, 0, 0.577832, 0, 0, 0, 0.577832, 0, 0, -0.298568 )
+mesh = SubResource( 1 )
+skeleton = NodePath("../Camera")
+material/0 = null
+
+[node name="ImGuiNode" type="Node2D" parent="."]
+script = ExtResource( 1 )
+
+[connection signal="IGLayout" from="ImGuiNode" to="." method="_on_ImGuiNode_IGLayout"]

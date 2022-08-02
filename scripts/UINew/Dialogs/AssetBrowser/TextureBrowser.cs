@@ -15,17 +15,16 @@ using ImGuiNET;
 
 namespace Chisel.scripts.UINew.Dialogs.AssetBrowser
 {
-    public class TextureBrowser : Node
+    public class TextureBrowser
     {
         public Boolean show = false;
-
-        private void _on_ImGuiNode_IGLayout()
+        
+        public static void TextureBrowser_Main(AssetManager AssetManager)
         {
-            if (show == false)
+            foreach (String Tex in AssetManager.TextureList.Keys)
             {
-                return;
+                
             }
-            // Insert ImGui Code
         }
     }
 }

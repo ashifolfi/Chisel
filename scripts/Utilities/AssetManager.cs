@@ -3,8 +3,6 @@
 
 	Class used to handle the storage of every model, texture, 
 	sprite, material that gets loaded when editing a map.
-	
-	TODO: Ditch non VTF support for textures. Source doesn't read from anything BUT a VTF
 
 	(C) 2022 by K. "Ashifolfi" J.
 */
@@ -28,7 +26,6 @@ public class AssetManager : Node
 
 	public override void _Ready()
 	{
-		
 	}
 	
 	// New function specifically to handle changing the active texture
