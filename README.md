@@ -28,4 +28,4 @@ Development requirements:
 <h1 align="center"> Note for Contributions </h1>
 Everything that needs to be recreated from Source must be done without any actual Source Engine code. If that's not possible don't bother with the feature. We're trying to not get on Valve's bad side here.
 
-This project is written in C#. The only GDScript files that remain haven't been converted yet.
+***This project is written in C# exclusively. GDScript contributions will be rejected and requested to be converted into C#.***
