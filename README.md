@@ -7,7 +7,7 @@ A heavy work in progress, cross-platform, godot-based replacement for Valve's Ha
 Created because of the issues regular hammer has that can't be fixed due to it's closed source nature.
 
 Current features:
-- 3D camera controls restriced to a 3d view
+- ~~3D camera controls restriced to a 3d view~~ (currently broken under imgui)
 - Basic UI elements
 - Ability to create a cube at the press of a button
 - Basic VTF Support
