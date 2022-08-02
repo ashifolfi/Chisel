@@ -36,9 +36,10 @@ public class FileManager : Node
 		// Setup camera
 	}
 
-	public List<String> DirContents(String Path)
+	public List<String> DirContents(String Path, Boolean Folders = false)
 	{
 		List<String> FileList = new List<string>();
+		List<String> FolderList = new List<string>();
 		
 		Directory Dir = new Directory();
 		if (Dir.Open(Path) == Error.Ok)
@@ -49,24 +50,27 @@ public class FileManager : Node
 			{
 				if (Dir.CurrentIsDir())
 				{
-					GD.Print("[FS] Found Directory: " + FileName);
+					if (FileName != "." && FileName != "..")
+					{
+						GD.Print("[FS] Found Directory: " + FileName);
+						FolderList.Add(FileName);
+					}
 				}
 				else
 				{
-					GD.Print("[FS] Found File: " + FileName);
 					FileList.Add(FileName);
 				}
 
 				FileName = Dir.GetNext();
 			}
-
-			return FileList;
 		}
 		else
 		{
 			GD.Print("[FS][ERR] Failed to access path");
 		}
 
+		if (Folders == true)
+			return FolderList;
 		return FileList;
 	}
 	
@@ -74,12 +78,22 @@ public class FileManager : Node
 	public void LoadGameTextures(String GameDir)
 	{
 		String FullPath = Globals.ExeDir + "/" + GameDir;
-		
-		// Search the materials subdirectory for anything containing .vtf
+
+		// Search the materials subdirectory for anything containing .vtf at the root
 		List<String> FileList = DirContents(FullPath + "/materials/");
 		foreach (String File in FileList.ToArray())
 		{
 			AssetManager.LoadTexture(File, GameDir);
+		}
+		// Go through every subdirectory
+		List<String> FolderList = DirContents(FullPath + "/materials/", true);
+		foreach (String Folder in FolderList.ToArray())
+		{
+			FileList = DirContents(FullPath + "/materials/" + Folder + "/");
+			foreach (String File in FileList.ToArray())
+			{
+				AssetManager.LoadTexture(Folder + "/" + File, GameDir);
+			}
 		}
 	}
 

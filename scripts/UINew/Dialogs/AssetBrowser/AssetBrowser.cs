@@ -43,6 +43,8 @@ namespace Chisel.scripts.UINew.Dialogs.AssetBrowser
             if (ImGui.BeginTabItem("Textures", ref tex_open, ImGuiTabItemFlags.None))
             {
                 TextureBrowser.TextureBrowser_Main(AssetManager);
+                
+                ImGui.Columns(1);
                 ImGui.EndTabItem();
             }
             // Model Browser

@@ -43,10 +43,19 @@ namespace Chisel.scripts.UINew.Dialogs
             
             // Actual window elements
             ImGui.Image(iconTextureId, new Vector2(Icon.GetWidth() / 3, Icon.GetHeight() / 3));
-            ImGui.Text("Chisel version 0.0.2");
-            ImGui.Text("Created by K. 'ashifolfi' J.");
-            ImGui.Text("");
-            ImGui.Text("Powered by ImGui + Godot");
+            String[] About =
+            {
+                "Chisel version 0.0.2",
+                "Created by K. 'ashifolfi' J.",
+                "",
+                "Powered by:",
+                "Godot Engine, ImGui, VTFLib, VMFLib",
+                "Written in: C#"
+            };
+            foreach (String S in About)
+            {
+                ImGui.Text(S);
+            }
 
             if (ImGui.Button("Source Code"))
                 OS.ShellOpen("https://www.github.com/ashifolfi/Chisel");

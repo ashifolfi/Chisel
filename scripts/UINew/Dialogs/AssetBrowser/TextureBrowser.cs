@@ -21,9 +21,14 @@ namespace Chisel.scripts.UINew.Dialogs.AssetBrowser
         
         public static void TextureBrowser_Main(AssetManager AssetManager)
         {
+            ImGui.Columns(3);
             foreach (String Tex in AssetManager.TextureList.Keys)
             {
-                
+                ImageTexture Material;
+                AssetManager.TextureList[Tex].TryGetValue("texture", out Material);
+                IntPtr MatID = ImGuiGD.BindTexture(Material);
+                ImGui.ImageButton(MatID, new Vector2(128, 128));
+                ImGui.NextColumn();
             }
         }
     }

@@ -45,7 +45,7 @@ public class AssetManager : Node
 		VTFFile VTexFile = new VTFFile();
 		ImageTexture Tex = new ImageTexture();
 		// Make sure the texture actually exists
-		if (!File.FileExists(Globals.ExeDir + "/" + GameDir + "/materials/" + FileName))
+		/*if (!File.FileExists(Globals.ExeDir + "/" + GameDir + "/materials/" + FileName))
 		{
 			// Texture doesn't exist
 			GD.Print("[INF] Texture " + TexName + " does not exist!");
@@ -57,7 +57,7 @@ public class AssetManager : Node
 			}
 		}
 		// Check if it's already in the list
-		else if (TryFindTex(TexName) == true)
+		else */if (TryFindTex(TexName) == true)
 		{
 			GD.Print("[INF] " + TexName + " is already loaded - skipping");
 		}
@@ -70,7 +70,6 @@ public class AssetManager : Node
 			{
 				// VTF Requires more work to be done
 				// Load the VTFFile
-				// You must place all vtf files in the exe dir under "vtf_test" as res:// does not work with vtflib
 				VTexFile.Load(Globals.ExeDir + "/" + GameDir + "/materials/" + FileName, false);
 				// Create a new image from the data given
 				Image Converted = new Image();
