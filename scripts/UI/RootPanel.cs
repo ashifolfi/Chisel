@@ -27,7 +27,6 @@ namespace Chisel.UI
             GD.Print("[INF] Initialization Begin");
             
             // Set this right here right now before we even touch the main editor scene.
-            Globals.RootPanel = GetNode<RootPanel>("/root/RootPanel");
             Globals.RootPath = "/root/RootPanel/";
             Globals.ExeDir = OS.GetExecutablePath().GetBaseDir();
 		

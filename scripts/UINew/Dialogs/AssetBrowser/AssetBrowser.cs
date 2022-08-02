@@ -8,6 +8,7 @@
  */
 using Godot;
 using System;
+using System.ComponentModel;
 using Vector2 = System.Numerics.Vector2;
 using ImGuiNET;
 
@@ -15,7 +16,7 @@ namespace Chisel.scripts.UINew.Dialogs.AssetBrowser
 {
     public class AssetBrowser : Node
     {
-        public Boolean show = false;
+        public Boolean show = true;
 
         public override void _Ready()
         {
@@ -29,7 +30,30 @@ namespace Chisel.scripts.UINew.Dialogs.AssetBrowser
             {
                 return;
             }
-            /
+
+            ImGui.Begin("Asset Browser", ref show, ImGuiWindowFlags.None);
+            ImGui.BeginTabBar("ab_tabs", ImGuiTabBarFlags.None);
+
+            // Tab Items
+            // Texture Browser
+            Boolean tex_open = true;
+            if (ImGui.BeginTabItem("Textures", ref tex_open, ImGuiTabItemFlags.None))
+            {
+                ImGui.EndTabItem();
+            }
+            // Model Browser
+            if (ImGui.BeginTabItem("Models", ref tex_open, ImGuiTabItemFlags.None))
+            {
+                ImGui.EndTabItem();
+            }
+            // Particle Browser
+            if (ImGui.BeginTabItem("Particles", ref tex_open, ImGuiTabItemFlags.None))
+            {
+                ImGui.EndTabItem();
+            }
+            
+            ImGui.EndTabBar();
+            ImGui.End();
         }
     }
 }

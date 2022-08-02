@@ -20,7 +20,7 @@ namespace Chisel
 		public static Boolean Enable2DView = false;
 		public static Boolean CameraOn = false;
 		public static String ToolsMode = "Nothing";
-		public static RootPanel RootPanel;
+		public static EditorMain RootPanel;
 		public static String RootPath;
 		public static String ExeDir;
 	}
