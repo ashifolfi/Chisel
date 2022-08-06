@@ -9,6 +9,7 @@
  */
 using Godot;
 using System;
+using Chisel.scripts.UINew.Dialogs.AssetBrowser;
 using Vector2 = System.Numerics.Vector2;
 using ImGuiNET;
 
@@ -51,7 +52,12 @@ namespace Chisel.scripts.UINew.Docks
                 ImGui.Image(atexTextureId, new Vector2(128, 128));
                 ImGui.Text(TexName);
             }
-            ImGui.Button("Browse", new Vector2(100, 20));
+
+            // Open asset browser when we press browse
+            if (ImGui.Button("Browse", new Vector2(100, 20)))
+            {
+                GetNode<AssetBrowser>("../AssetBrowser").show = true;
+            }
             
             ImGui.End();
         }

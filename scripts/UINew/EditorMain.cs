@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Numerics;
+using System.Runtime.CompilerServices;
 using Vector2 = System.Numerics.Vector2;
 using Godot;
 using ImGuiNET;
@@ -10,11 +11,14 @@ public class EditorMain : Node
     private Boolean setup = false;
     private AssetManager AssetManager;
     private FileManager FileManager;
+
+    private ImFontPtr NSPtr;
     public override void _Ready()
     {
         ImGui.GetIO().ConfigFlags |= ImGuiConfigFlags.DockingEnable;
         ImGui.GetIO().ConfigWindowsMoveFromTitleBarOnly = true;
-        
+
+        // Set theme colors
         RangeAccessor<Vector4> colors = ImGui.GetStyle().Colors;
         colors[(int)ImGuiCol.Text]                   = new Vector4(1.00f, 1.00f, 1.00f, 1.00f);
         colors[(int)ImGuiCol.TextDisabled]           = new Vector4(0.50f, 0.50f, 0.50f, 1.00f);
@@ -76,14 +80,18 @@ public class EditorMain : Node
     private void _on_ImGuiNode_IGLayout()
     {
         ImGui.DockSpaceOverViewport(ImGui.GetMainViewport());
+        //ImGui.ShowStyleEditor();
         if (setup == false)
         {
             GD.Print("[INF] Initialization Begin");
-            
+
             // Set this right here right now before we even touch the main editor scene.
             Globals.RootPanel = GetNode<EditorMain>("/root/RootNode");
             Globals.RootPath = "/root/RootNode/";
             Globals.ExeDir = OS.GetExecutablePath().GetBaseDir();
+            
+            // Add our custom font
+            ImGuiGD.AddFont(GD.Load<DynamicFontData>(Globals.ExeDir + "/" + "Chisel/resource/Roboto-Medium.ttf"), 12);
 		
             GD.Print("[INF] Loading main editor components");
             // Instance the main editor scene. Fixes RootPanel not being inited before

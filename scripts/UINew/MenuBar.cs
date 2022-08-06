@@ -17,6 +17,12 @@ namespace Chisel.scripts.UINew
         {
             ImGui.BeginMainMenuBar();
 
+            if (ImGui.BeginMenu("Chisel", true))
+            {
+                AppMenu();
+                ImGui.EndMenu();
+            }
+            
             if (ImGui.BeginMenu("File", true))
             {
                 FileMenu();
@@ -73,6 +79,14 @@ namespace Chisel.scripts.UINew
             ImGui.EndMainMenuBar();
         }
 
+        private void AppMenu()
+        {
+            if (ImGui.MenuItem("Exit"))
+            {
+                GetTree().Quit();
+            }
+        }
+        
         private void FileMenu()
         {
             ImGui.MenuItem("New Map");
