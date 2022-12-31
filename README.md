@@ -6,7 +6,6 @@ A multiplatform, godot-based level editor.
 
 Engine/Game Support:
 - Source [HEAVILY WIP, NO VMF,MDL,VMT SUPPORT]
-- Sonic Robo Blast 2 [UDMF ONLY]
 
 <br>
 <h2 align="center"> Requirements </h2>
